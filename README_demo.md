@@ -3,7 +3,7 @@
 Demo academica multimodal para generar campanas automotrices completas:
 
 1. fine-tuning de un LLM con Unsloth + LoRA/QLoRA para producir estrategia, canal, copy, KPIs y prompts visuales;
-2. fine-tuning visual con DreamBooth LoRA sobre SDXL para aprender la identidad de un auto o serie;
+2. fine-tuning visual con DreamBooth LoRA sobre SDXL para aprender el estilo de campanas del concesionario Autoespar y referencias visuales de autos/logos;
 3. generacion de assets para web, social, showroom, email, print y highway banner;
 4. comparacion LLM base vs LLM fine-tuned y SDXL base vs SDXL + LoRA visual.
 
@@ -47,7 +47,7 @@ Cada ejemplo debe tener:
     "strategy": "Promote safety, family space, and fuel efficiency, closing with a clear invitation to book a test drive.",
     "channel_plan": "Use Instagram for visual awareness and lead generation forms; reinforce with Meta Ads remarketing for interested prospects.",
     "ad_copy": "Give your family more space, technology, and efficiency. Book your test drive today and discover the hybrid SUV built for city life.",
-    "image_prompt": "REALCARMODEL real car model in an English Instagram ad for a mid-range hybrid SUV dealership campaign targeting urban families in Miami, bright city background, premium automotive commercial photography, clear space for headline, no readable text",
+    "image_prompt": "AUTOESPAR automotive dealership marketing banner in an English Instagram ad for a mid-range hybrid SUV campaign targeting urban families in Miami, bright city background, premium automotive commercial photography, clear space for headline, no readable text",
     "kpis": ["Leads", "Cost per Lead", "Test Drive Bookings", "Conversion Rate", "ROI"],
     "business_note": "Prioritize qualified leads and measure test drive bookings before scaling the media budget."
   }
@@ -64,7 +64,7 @@ data/commercial_campaign_sft/commercial_campaign_sft.json
 
 ### Diffusion Fine-Tuning
 
-Coloca las imagenes del auto en:
+Coloca las imagenes de campanas, autos y logos en:
 
 ```text
 data/car_campaign_lora/images/
@@ -80,17 +80,22 @@ Formato:
 
 ```csv
 file_path,caption
-./images/real_car_model_01.png,"REALCARMODEL real car model, front three quarter view, metallic blue paint, studio automotive photography, premium lighting"
+./images/1.autoespar_toyota_corolla_cross_2025.jpg,"AUTOESPAR automotive dealership marketing banner for Toyota Corolla Cross Hybrid Electric 2025. ... includes the conditions/legal disclaimer area at the bottom of the image, usually inside a black, white, or red horizontal rectangle with very small Spanish legal text."
 ```
 
-Las captions deben estar en ingles e incluir:
+Para el dataset actual, `metadata_template.csv` ya esta preparado con 29 filas:
 
-- trigger word unico, por ejemplo `REALCARMODEL`
-- marca/modelo o serie del auto
-- angulo o vista
-- color/materiales
-- contexto visual
-- tipo de fotografia
+- 23 filas de banners/campanas del concesionario Autoespar.
+- 6 filas suplementarias tomadas directamente de `docs/images_descriptions_start/lora_caption_dataset.csv`.
+
+Las primeras 23 captions usan `AUTOESPAR` como trigger word e incluyen:
+
+- estilo de banner/campana de concesionario Autoespar;
+- modelo Toyota, ano, motor, transmision, campana, garantia y concesionario cuando aplica;
+- area de `condiciones` al pie de la imagen, normalmente dentro de un rectangulo negro, blanco o rojo con texto legal pequeno;
+- telefono de cotizacion o servicio cuando aparece en la fuente, por ejemplo despues de `cotiza al` o `agenda tu servicio al`.
+
+Las 6 captions suplementarias se mantienen exactamente como vienen en `lora_caption_dataset.csv`, porque son referencias limpias de logos/autos y no piezas publicitarias Autoespar.
 
 Para la demo final se recomiendan 20-40 imagenes con vistas frontal, lateral, trasera, interior, detalles y lifestyle. Para una prueba rapida pueden bastar 8-15 imagenes.
 
@@ -108,7 +113,7 @@ Para la demo final se recomiendan 20-40 imagenes con vistas frontal, lateral, tr
 2. Subir o clonar el repositorio.
 3. Copiar el JSON SFT a `data/commercial_campaign_sft/commercial_campaign_sft.json`.
 4. Agregar imagenes en `data/car_campaign_lora/images/`.
-5. Crear `data/car_campaign_lora/metadata.csv` con `file_path` y `caption`.
+5. Usar `data/car_campaign_lora/metadata_template.csv` como base; si el notebook espera `metadata.csv`, copiarlo a `data/car_campaign_lora/metadata.csv`.
 6. Abrir `notebooks/proyecto_final_automotive_lora_marketing_full_colab_kaggle.ipynb`.
 7. Ejecutar celdas de validacion de datos.
 8. Cambiar flags cuando los datos esten listos:
@@ -119,7 +124,7 @@ RUN_VISUAL_TRAINING = True
 RUN_IMAGE_GENERATION = True
 ```
 
-9. Ajustar `BRAND`, `MODEL_SERIES` y `TRIGGER_WORD` segun el modelo real.
+9. Usar `TRIGGER_WORD = "AUTOESPAR"` para el dataset visual actual.
 10. Ejecutar el notebook de arriba hacia abajo.
 
 ## Outputs Esperados

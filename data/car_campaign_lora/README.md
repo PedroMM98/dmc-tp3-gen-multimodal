@@ -1,26 +1,50 @@
 # Automotive LoRA Training Dataset
 
-Place the car campaign training images in `data/car_campaign_lora/images/`.
+Place the campaign images in:
 
-Use `metadata.csv` as the source of truth for image captions:
+```text
+data/car_campaign_lora/images/
+```
+
+Use metadata CSV as the source of truth for image captions:
 
 ```csv
 file_path,caption
-./images/real_car_model_01.png,"REALCARMODEL real car model, front three quarter view, metallic blue paint, studio automotive photography, premium lighting"
+./images/1.autoespar_toyota_corolla_cross_2025.jpg,"AUTOESPAR automotive dealership marketing banner for Toyota Corolla Cross Hybrid Electric 2025. ... includes the conditions/legal disclaimer area at the bottom of the image, usually inside a black, white, or red horizontal rectangle with very small Spanish legal text."
 ```
 
-Each caption should include the unique trigger word, car model/series, angle, color, setting, and photo style.
+## Current Metadata
 
-Why metadata instead of one `.txt` file per image:
+The current `metadata_template.csv` has 29 rows:
+
+- 23 Autoespar dealership campaign/banner rows built from `docs/images_descriptions_start/datos-concesionario - Hoja 1.csv` and `docs/images_descriptions_start/image_descriptions.csv`.
+- 6 direct supplemental reference rows from `docs/images_descriptions_start/lora_caption_dataset.csv`.
+
+Use `AUTOESPAR` as the trigger word for the dealership advertising style.
+
+The first 23 captions describe:
+
+- Autoespar dealership campaign/banner style.
+- Toyota model, model year, engine/powertrain, transmission, campaign, warranty, and dealer details when available.
+- The `condiciones`/legal disclaimer area at the bottom of the image, usually inside a black, white, or red horizontal rectangle with very small Spanish legal text.
+- Quote or service phone numbers when present, such as wording after `cotiza al` or `agenda tu servicio al`.
+
+The final 6 supplemental captions are kept exactly as written in `lora_caption_dataset.csv`; they are clean logo/car reference assets, not Autoespar ad-layout captions.
+
+## Why Metadata CSV
 
 - It is easier to audit image/caption pairs in one place.
 - It is easier to edit captions in bulk.
-- It makes route validation straightforward.
-- It versions better once the dataset uses real car models.
+- It makes path validation straightforward.
+- It versions better once the dataset uses real campaign images.
 - It keeps the dataset ready for future caption-aware training scripts.
 
-Recommended for the final demo: 20-40 images covering front, side, rear, interior, detail shots, and lifestyle contexts.
-
-Captions should be written in English for the current project scope. Replace `REALCARMODEL` with the unique trigger word chosen for the real car model once the final image set is ready.
-
 Technical note: the current DreamBooth SDXL command uses one shared `instance_prompt`. The metadata captions are used for dataset QA, traceability, documentation, and prompt-building.
+
+## Regenerate Metadata
+
+When the starter CSVs in `docs/images_descriptions_start/` change, regenerate `metadata_template.csv` with:
+
+```powershell
+conda run -n chatbot_llm_rag_taller python scripts/prepare_automotive_lora_metadata.py
+```
