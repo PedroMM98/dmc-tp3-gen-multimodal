@@ -61,12 +61,13 @@ El archivo debe ser una lista JSON con minimo 200 objetos:
     "channel_plan": "Use Instagram for visual awareness and lead generation forms; reinforce with Meta Ads remarketing for interested prospects.",
     "ad_copy": "Give your family more space, technology, and efficiency. Book your test drive today and discover the hybrid SUV built for city life.",
     "image_prompt": "REALCARMODEL real car model in an English Instagram ad for a mid-range hybrid SUV dealership campaign targeting urban families in Miami, bright city background, premium automotive commercial photography, clear space for headline, no readable text",
-    "negative_prompt": "blurry, low quality, watermark, distorted text, malformed logo, extra wheels, deformed car, bad perspective",
     "kpis": ["Leads", "Cost per Lead", "Test Drive Bookings", "Conversion Rate", "ROI"],
     "business_note": "Prioritize qualified leads and measure test drive bookings before scaling the media budget."
   }
 }
 ```
+
+El `negative_prompt` no forma parte obligatoria del dataset SFT del LLM. El prompt builder lo agrega como configuracion deterministica para Diffusers, con fallback fijo para evitar agua, texto deformado, ruedas extra y artefactos.
 
 ### Diffusion fine-tuning
 

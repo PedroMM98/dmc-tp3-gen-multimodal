@@ -173,13 +173,15 @@
     }
 
     .hero-layout {
-      grid-template-columns: 1fr 390px;
-      gap: 48px;
+      grid-template-columns: minmax(0, 1fr) 500px;
+      gap: 42px;
       align-items: center;
     }
 
     .hero-image {
-      height: 440px;
+      aspect-ratio: 768 / 543;
+      width: 100%;
+      height: auto;
       margin: 0;
       border: 1px solid var(--line);
       background: var(--white);
@@ -190,7 +192,7 @@
       width: 100%;
       height: 100%;
       display: block;
-      object-fit: cover;
+      object-fit: contain;
       object-position: center;
     }
 
@@ -476,10 +478,24 @@
       background: #111827;
       color: #f8fafc;
       border: 1px solid #374151;
-      padding: 24px;
+      padding: 20px;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      font-size: 17px;
-      line-height: 1.5;
+      font-size: 13px;
+      line-height: 1.48;
+      white-space: pre-wrap;
+    }
+
+    .roi-note {
+      margin-top: 14px;
+      background: var(--amber-soft);
+      border: 1px solid #efd18a;
+      padding: 14px 16px;
+    }
+
+    .roi-note p {
+      font-size: 14px;
+      line-height: 1.38;
+      color: #5f4b1c;
     }
 
     .roadmap {
@@ -570,7 +586,8 @@
       }
 
       .hero-image {
-        height: 360px;
+        width: 100%;
+        height: auto;
       }
 
       .footer {
@@ -907,8 +924,8 @@ REALCARMODEL</div>
     <section class="slide">
       <div class="slide-inner">
         <div>
-          <p class="eyebrow">Evaluacion y ROI</p>
-          <h2>Medimos calidad estructural, comparacion cualitativa e impacto comercial</h2>
+          <p class="eyebrow">Evaluacion e impacto</p>
+          <h2>Medimos calidad tecnica y dejamos trazable como calcular ROI con datos reales</h2>
         </div>
         <div class="roi">
           <div>
@@ -930,17 +947,25 @@ REALCARMODEL</div>
                 <p class="small">Latencia por respuesta y por asset.</p>
               </div>
             </div>
+            <div class="roi-note">
+              <p>Estas metricas salen del notebook. El ROI no se afirma como resultado real: se presenta como metodologia para estimarlo cuando tengamos tiempos, costos y volumen operativo medidos.</p>
+            </div>
           </div>
-          <div class="formula">ahorro creativo = 12 * 6 * 35
-= USD 2,520
+          <div class="formula">Datos reales necesarios:
+- horas creativas antes vs despues
+- horas comerciales antes vs despues
+- campanas/propuestas por mes
+- costo hora del equipo
+- costo operativo IA mensual
 
-ahorro comercial = 2 * 40 * 25
-= USD 2,000
+Formula:
+ahorro = (h_creativas * costo_creativo * campanas)
+       + (h_comerciales * costo_comercial * propuestas)
 
-costo IA = USD 300
+ROI = (ahorro - costo_IA) / costo_IA
 
-ROI = (2,520 + 2,000 - 300) / 300
-= 14.07x</div>
+Ejemplo hipotetico:
+(12*6*35 + 2*40*25 - 300) / 300 = 14.07x</div>
         </div>
       </div>
       <div class="footer"><span>Analisis comparativo y valor de negocio</span><span>9 / 10</span></div>

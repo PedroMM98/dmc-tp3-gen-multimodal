@@ -19,7 +19,8 @@ El proyecto tiene dos entradas de datos separadas:
   - recomendado: 300 ejemplos con split `240 train / 60 eval`
   - formato JSON como lista de objetos con `instruction`, `input`, `output`
   - opcional: generar ese JSON desde `data/Social_Media_Advertising.csv` con enriquecimiento automotriz deterministico
-  - salida esperada en JSON con: `strategy`, `channel_plan`, `ad_copy`, `image_prompt`, `negative_prompt`, `kpis`, `business_note`
+  - salida esperada en JSON con: `strategy`, `channel_plan`, `ad_copy`, `image_prompt`, `kpis`, `business_note`
+  - `negative_prompt` no es obligatorio en el SFT del LLM; se agrega en el prompt builder visual con fallback deterministico
 - Fine-tuning textual con Unsloth + LoRA sobre `unsloth/Qwen3-4B-Instruct-2507-unsloth-bnb-4bit`.
 - Crear dataset visual DreamBooth desde `data/car_campaign_lora/metadata.csv`:
   - columnas obligatorias: `file_path`, `caption`
@@ -73,7 +74,7 @@ El proyecto tiene dos entradas de datos separadas:
 - `CreativeBrief`:
   - `brand`, `model_series`, `trigger_word`, `campaign_goal`, `vehicle_type`, `vehicle_model`, `price_range`, `target_audience`, `customer_sector`, `preferred_channels`, `language`, `location`, `duration`, `promotion_type`, `budget_hint`, `tone`
 - `CreativePlan`:
-  - `strategy`, `channel_plan`, `ad_copy`, `image_prompt`, `negative_prompt`, `kpis`, `business_note`
+  - `strategy`, `channel_plan`, `ad_copy`, `image_prompt`, `kpis`, `business_note`
 - `VisualTrainingExample`:
   - `file_path`, `caption`
 - CLI:

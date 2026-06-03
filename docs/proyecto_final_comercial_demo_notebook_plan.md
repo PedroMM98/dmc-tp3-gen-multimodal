@@ -144,7 +144,6 @@ Formato de ejemplo:
     "channel_plan": "Use Instagram for visual awareness and lead generation forms; reinforce with Meta Ads remarketing for interested prospects.",
     "ad_copy": "Give your family more space, technology, and efficiency. Book your test drive today and discover the hybrid SUV built for city life.",
     "image_prompt": "REALCARMODEL real car model in an English Instagram ad for a mid-range hybrid SUV dealership campaign targeting urban families in Miami, bright city background, premium automotive commercial photography, clear space for headline, no readable text",
-    "negative_prompt": "blurry, low quality, watermark, distorted text, malformed logo, extra wheels, deformed car, bad perspective",
     "kpis": ["Leads", "Cost per Lead", "Test Drive Bookings", "Conversion Rate", "ROI"],
     "business_note": "Prioritize qualified leads and measure test drive bookings before scaling the media budget."
   }
@@ -157,9 +156,10 @@ Campos obligatorios de salida del LLM:
 - `channel_plan`
 - `ad_copy`
 - `image_prompt`
-- `negative_prompt`
 - `kpis`
 - `business_note`
+
+Nota: `negative_prompt` no es obligatorio en el dataset SFT del LLM. El notebook debe generarlo en el prompt builder visual con un fallback deterministico; si aparece como campo extra en algun ejemplo, se puede aprovechar, pero no debe bloquear la validacion.
 
 ## Visual Dataset Plan
 
@@ -288,7 +288,7 @@ outputs/evaluation/
 
 ## Prompt Engineering Plan
 
-El prompt base se construye desde un brief de campana y desde la salida JSON del LLM fine-tuned. El LLM debe convertir datos comerciales en estrategia, copy, plan de canal, `image_prompt` y `negative_prompt`; luego el notebook ajusta el prompt visual por placement y dimensiones.
+El prompt base se construye desde un brief de campana y desde la salida JSON del LLM fine-tuned. El LLM debe convertir datos comerciales en estrategia, copy, plan de canal e `image_prompt`; luego el notebook ajusta el prompt visual por placement y dimensiones, y agrega un `negative_prompt` deterministico para Diffusers.
 
 Brief de ejemplo:
 
@@ -368,7 +368,7 @@ Metricas cuantitativas del LLM:
 - training loss final
 - eval loss si el trainer la produce
 - porcentaje de respuestas con JSON valido
-- cobertura de campos obligatorios: `strategy`, `channel_plan`, `ad_copy`, `image_prompt`, `negative_prompt`, `kpis`, `business_note`
+- cobertura de campos obligatorios: `strategy`, `channel_plan`, `ad_copy`, `image_prompt`, `kpis`, `business_note`
 - similitud Jaccard simple entre salida generada y salida esperada
 - latencia promedio de inferencia
 

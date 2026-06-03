@@ -48,12 +48,13 @@ Cada ejemplo debe tener:
     "channel_plan": "Use Instagram for visual awareness and lead generation forms; reinforce with Meta Ads remarketing for interested prospects.",
     "ad_copy": "Give your family more space, technology, and efficiency. Book your test drive today and discover the hybrid SUV built for city life.",
     "image_prompt": "REALCARMODEL real car model in an English Instagram ad for a mid-range hybrid SUV dealership campaign targeting urban families in Miami, bright city background, premium automotive commercial photography, clear space for headline, no readable text",
-    "negative_prompt": "blurry, low quality, watermark, distorted text, malformed logo, extra wheels, deformed car, bad perspective",
     "kpis": ["Leads", "Cost per Lead", "Test Drive Bookings", "Conversion Rate", "ROI"],
     "business_note": "Prioritize qualified leads and measure test drive bookings before scaling the media budget."
   }
 }
 ```
+
+`negative_prompt` no es obligatorio en el JSON SFT. El notebook agrega un negative prompt deterministico en la etapa de generacion con Diffusers; si algun ejemplo lo trae como campo extra, se puede usar, pero no se valida como requisito del fine-tuning del LLM.
 
 Nota de ruta: actualmente hay un archivo en `data/commercial_campaing_sft/commercial_campaign_sft.json`. La carpeta tiene un typo: `campaing`. Para que el notebook lo lea sin cambios, mueve o copia ese archivo a:
 
