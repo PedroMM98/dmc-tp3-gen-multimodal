@@ -1,0 +1,301 @@
+Campaign_Goal,Target_Audience,Channel_Used,Customer_Segment,Location,Language,Duration,Conversion_Rate,Acquisition_Cost,ROI,Clicks,Impressions,Engagement_Score,Company
+Brand Awareness,Women 18-24,Instagram,Fashion,Miami,Spanish,7 Days,0.025,$85,0.85,215,12000,4.4,NovaMarket
+Increase Sales,Men 35-44,Email,Beauty,Austin,English,14 Days,0.043,$104,0.95,254,13379,4.55,Altura Media
+Lead Generation,Professionals 25-45,LinkedIn,Travel,Lima,Spanish,21 Days,0.037,$198,0.93,295,14758,5.1,BrightWave
+Product Launch,Women 25-34,Facebook,Finance,Bogota,English,45 Days,0.043,$142,1.11,338,16137,5.65,Pixel Norte
+Customer Retention,Men 45-60,Google Ads,Education,Mexico City,Spanish,10 Days,0.049,$236,1.13,385,17516,6.2,Mercurio Labs
+Brand Awareness,Students 18-24,YouTube,Fitness,Santiago,English,15 Days,0.055,$180,1.31,434,18895,6.75,Andes Digital
+Increase Sales,Men 25-34,TikTok,Food,New York,Spanish,30 Days,0.073,$199,1.49,486,20274,7.7,BlueRoute
+Lead Generation,Parents 30-45,Instagram,Technology,Los Angeles,English,7 Days,0.067,$218,1.54,541,21653,8.25,UrbanPulse
+Product Launch,Women 18-24,Email,Fashion,Chicago,Spanish,14 Days,0.073,$237,1.61,598,23032,8.4,NovaMarket
+Customer Retention,Men 35-44,LinkedIn,Beauty,Quito,English,21 Days,0.079,$331,1.27,659,24411,8.95,Altura Media
+Brand Awareness,Professionals 25-45,Facebook,Travel,Miami,Spanish,45 Days,0.085,$275,0.9,722,25790,4.0,BrightWave
+Increase Sales,Women 25-34,Google Ads,Finance,Austin,English,10 Days,0.103,$369,0.97,787,27169,4.55,Pixel Norte
+Lead Generation,Men 45-60,YouTube,Education,Lima,Spanish,15 Days,0.025,$313,0.81,856,28548,5.1,Mercurio Labs
+Product Launch,Students 18-24,TikTok,Fitness,Bogota,English,30 Days,0.031,$332,0.95,927,29927,6.05,Andes Digital
+Customer Retention,Men 25-34,Instagram,Food,Mexico City,Spanish,7 Days,0.037,$351,1.05,1001,31306,6.6,BlueRoute
+Brand Awareness,Parents 30-45,Email,Technology,Santiago,English,14 Days,0.043,$370,1.11,1078,32685,6.75,UrbanPulse
+Increase Sales,Women 18-24,LinkedIn,Fashion,New York,Spanish,21 Days,0.061,$464,1.18,1158,34064,7.3,NovaMarket
+Lead Generation,Men 35-44,Facebook,Beauty,Los Angeles,English,45 Days,0.055,$408,1.31,637,35443,7.85,Altura Media
+Product Launch,Professionals 25-45,Google Ads,Travel,Chicago,Spanish,10 Days,0.061,$502,0.97,699,36822,8.4,BrightWave
+Customer Retention,Women 25-34,YouTube,Finance,Quito,English,15 Days,0.067,$446,1.15,764,38201,8.95,Pixel Norte
+Brand Awareness,Men 45-60,TikTok,Education,Miami,Spanish,30 Days,0.073,$465,0.74,831,39580,4.4,Mercurio Labs
+Increase Sales,Students 18-24,Instagram,Fitness,Austin,English,7 Days,0.091,$484,0.88,901,40959,4.95,Andes Digital
+Lead Generation,Men 25-34,Email,Food,Lima,Spanish,14 Days,0.085,$503,0.9,973,42338,5.1,BlueRoute
+Product Launch,Parents 30-45,LinkedIn,Technology,Bogota,English,21 Days,0.091,$597,0.92,1049,43717,5.65,UrbanPulse
+Customer Retention,Women 18-24,Facebook,Fashion,Mexico City,Spanish,45 Days,0.025,$541,0.81,1127,45096,6.2,NovaMarket
+Brand Awareness,Men 35-44,Google Ads,Beauty,Santiago,English,10 Days,0.031,$635,0.83,1208,46475,6.75,Altura Media
+Increase Sales,Professionals 25-45,YouTube,Travel,New York,Spanish,15 Days,0.049,$579,1.06,1292,47854,7.3,BrightWave
+Lead Generation,Women 25-34,TikTok,Finance,Los Angeles,English,30 Days,0.043,$598,0.79,1378,49233,8.25,Pixel Norte
+Product Launch,Men 45-60,Instagram,Education,Chicago,Spanish,7 Days,0.049,$617,0.89,1467,50612,8.8,Mercurio Labs
+Customer Retention,Students 18-24,Email,Fitness,Quito,English,14 Days,0.055,$636,0.95,1559,51991,8.95,Andes Digital
+Brand Awareness,Men 25-34,LinkedIn,Food,Miami,Spanish,21 Days,0.061,$730,0.42,1654,53370,4.0,BlueRoute
+Increase Sales,Parents 30-45,Facebook,Technology,Austin,English,45 Days,0.079,$674,0.65,1751,54749,4.55,UrbanPulse
+Lead Generation,Women 18-24,Google Ads,Fashion,Lima,Spanish,10 Days,0.073,$768,0.62,1852,56128,5.1,NovaMarket
+Product Launch,Men 35-44,YouTube,Beauty,Bogota,English,15 Days,0.079,$92,1.42,1955,57507,5.65,Altura Media
+Customer Retention,Professionals 25-45,TikTok,Travel,Mexico City,Spanish,30 Days,0.085,$111,1.56,1059,58886,6.6,BrightWave
+Brand Awareness,Women 25-34,Instagram,Finance,Santiago,English,7 Days,0.091,$130,1.66,1145,60265,7.15,Pixel Norte
+Increase Sales,Men 45-60,Email,Education,New York,Spanish,14 Days,0.037,$149,1.12,1232,61644,7.3,Mercurio Labs
+Lead Generation,Students 18-24,LinkedIn,Fitness,Los Angeles,English,21 Days,0.031,$243,1.1,1323,63023,7.85,Andes Digital
+Product Launch,Men 25-34,Facebook,Food,Chicago,Spanish,45 Days,0.037,$187,1.27,1416,64402,8.4,BlueRoute
+Customer Retention,Parents 30-45,Google Ads,Technology,Quito,English,10 Days,0.043,$281,1.3,1512,65781,8.95,UrbanPulse
+Brand Awareness,Women 18-24,YouTube,Fashion,Miami,Spanish,15 Days,0.049,$225,0.92,1611,67160,4.0,NovaMarket
+Increase Sales,Men 35-44,TikTok,Beauty,Austin,English,30 Days,0.067,$244,1.11,1713,68539,4.95,Altura Media
+Lead Generation,Professionals 25-45,Instagram,Travel,Lima,Spanish,7 Days,0.061,$263,1.16,1817,69918,5.5,BrightWave
+Product Launch,Women 25-34,Email,Finance,Bogota,English,14 Days,0.067,$282,1.22,1925,71297,5.65,Pixel Norte
+Customer Retention,Men 45-60,LinkedIn,Education,Mexico City,Spanish,21 Days,0.073,$376,1.25,2034,72676,6.2,Mercurio Labs
+Brand Awareness,Students 18-24,Facebook,Fitness,Santiago,English,45 Days,0.079,$320,1.06,2147,74055,6.75,Andes Digital
+Increase Sales,Men 25-34,Google Ads,Food,New York,Spanish,10 Days,0.097,$414,1.13,2263,75434,7.3,BlueRoute
+Lead Generation,Parents 30-45,YouTube,Technology,Los Angeles,English,15 Days,0.091,$358,1.26,2381,76813,7.85,UrbanPulse
+Product Launch,Women 18-24,TikTok,Fashion,Chicago,Spanish,30 Days,0.025,$377,1.11,2502,78192,8.8,NovaMarket
+Customer Retention,Men 35-44,Instagram,Beauty,Quito,English,7 Days,0.031,$396,1.21,2625,79571,9.35,Altura Media
+Brand Awareness,Professionals 25-45,Email,Travel,Miami,Spanish,14 Days,0.037,$415,0.72,2752,80950,4.0,BrightWave
+Increase Sales,Women 25-34,LinkedIn,Finance,Austin,English,21 Days,0.055,$509,0.8,1481,82329,4.55,Pixel Norte
+Lead Generation,Men 45-60,Facebook,Education,Lima,Spanish,45 Days,0.049,$453,0.92,1590,83708,5.1,Mercurio Labs
+Product Launch,Students 18-24,Google Ads,Fitness,Bogota,English,10 Days,0.055,$547,0.95,1701,85087,5.65,Andes Digital
+Customer Retention,Men 25-34,YouTube,Food,Mexico City,Spanish,15 Days,0.061,$491,0.76,1815,86466,6.2,BlueRoute
+Brand Awareness,Parents 30-45,TikTok,Technology,Santiago,English,30 Days,0.067,$510,0.9,1932,87845,7.15,UrbanPulse
+Increase Sales,Women 18-24,Instagram,Fashion,New York,Spanish,7 Days,0.085,$529,1.05,2052,89224,7.7,NovaMarket
+Lead Generation,Men 35-44,Email,Beauty,Los Angeles,English,14 Days,0.079,$548,1.06,2174,90603,7.85,Altura Media
+Product Launch,Professionals 25-45,LinkedIn,Travel,Chicago,Spanish,21 Days,0.085,$642,1.09,2299,91982,8.4,BrightWave
+Customer Retention,Women 25-34,Facebook,Finance,Quito,English,45 Days,0.091,$586,1.26,2427,93361,8.95,Pixel Norte
+Brand Awareness,Men 45-60,Google Ads,Education,Miami,Spanish,10 Days,0.025,$680,0.45,2557,94740,4.0,Mercurio Labs
+Increase Sales,Students 18-24,YouTube,Fitness,Austin,English,15 Days,0.043,$624,0.67,2691,96119,4.55,Andes Digital
+Lead Generation,Men 25-34,TikTok,Food,Lima,Spanish,30 Days,0.037,$643,0.77,2827,97498,5.5,BlueRoute
+Product Launch,Parents 30-45,Instagram,Technology,Bogota,English,7 Days,0.043,$662,0.5,2966,98877,6.05,UrbanPulse
+Customer Retention,Women 18-24,Email,Fashion,Mexico City,Spanish,14 Days,0.049,$681,0.56,3107,100256,6.2,NovaMarket
+Brand Awareness,Men 35-44,LinkedIn,Beauty,Santiago,English,21 Days,0.055,$775,0.59,3252,101635,6.75,Altura Media
+Increase Sales,Professionals 25-45,Facebook,Travel,New York,Spanish,45 Days,0.073,$99,1.43,3399,103014,7.3,BrightWave
+Lead Generation,Women 25-34,Google Ads,Finance,Los Angeles,English,10 Days,0.067,$193,1.41,3549,104393,7.85,Pixel Norte
+Product Launch,Men 45-60,YouTube,Education,Chicago,Spanish,15 Days,0.073,$137,1.59,1903,105772,8.4,Mercurio Labs
+Customer Retention,Students 18-24,TikTok,Fitness,Quito,English,30 Days,0.079,$156,1.73,2035,107151,9.35,Andes Digital
+Brand Awareness,Men 25-34,Instagram,Food,Miami,Spanish,7 Days,0.085,$175,1.27,2170,108530,4.4,BlueRoute
+Increase Sales,Parents 30-45,Email,Technology,Austin,English,14 Days,0.103,$194,1.38,2308,109909,4.55,UrbanPulse
+Lead Generation,Women 18-24,LinkedIn,Fashion,Lima,Spanish,21 Days,0.025,$288,0.71,2448,111288,5.1,NovaMarket
+Product Launch,Men 35-44,Facebook,Beauty,Bogota,English,45 Days,0.031,$232,0.89,2591,112667,5.65,Altura Media
+Customer Retention,Professionals 25-45,Google Ads,Travel,Mexico City,Spanish,10 Days,0.037,$326,0.91,2737,114046,6.2,BrightWave
+Brand Awareness,Women 25-34,YouTube,Finance,Santiago,English,15 Days,0.043,$270,1.09,2885,115425,6.75,Pixel Norte
+Increase Sales,Men 45-60,TikTok,Education,New York,Spanish,30 Days,0.061,$289,1.28,3036,116804,7.7,Mercurio Labs
+Lead Generation,Students 18-24,Instagram,Fitness,Los Angeles,English,7 Days,0.055,$308,1.33,3190,118183,8.25,Andes Digital
+Product Launch,Men 25-34,Email,Food,Chicago,Spanish,14 Days,0.061,$327,1.39,3347,119562,8.4,BlueRoute
+Customer Retention,Parents 30-45,LinkedIn,Technology,Quito,English,21 Days,0.067,$421,1.41,3507,120941,8.95,UrbanPulse
+Brand Awareness,Women 18-24,Facebook,Fashion,Miami,Spanish,45 Days,0.073,$365,1.04,3669,122320,4.0,NovaMarket
+Increase Sales,Men 35-44,Google Ads,Beauty,Austin,English,10 Days,0.091,$459,0.75,3834,123699,4.55,Altura Media
+Lead Generation,Professionals 25-45,YouTube,Travel,Lima,Spanish,15 Days,0.085,$403,0.88,4002,125078,5.1,BrightWave
+Product Launch,Women 25-34,TikTok,Finance,Bogota,English,30 Days,0.091,$422,1.02,4173,126457,6.05,Pixel Norte
+Customer Retention,Men 45-60,Instagram,Education,Mexico City,Spanish,7 Days,0.025,$441,0.83,4346,127836,6.6,Mercurio Labs
+Brand Awareness,Students 18-24,Email,Fitness,Santiago,English,14 Days,0.031,$460,0.89,2325,129215,6.75,Andes Digital
+Increase Sales,Men 25-34,LinkedIn,Food,New York,Spanish,21 Days,0.049,$554,0.96,2481,130594,7.3,BlueRoute
+Lead Generation,Parents 30-45,Facebook,Technology,Los Angeles,English,45 Days,0.043,$498,1.09,2639,131973,7.85,UrbanPulse
+Product Launch,Women 18-24,Google Ads,Fashion,Chicago,Spanish,10 Days,0.049,$592,1.11,2800,133352,8.4,NovaMarket
+Customer Retention,Men 35-44,YouTube,Beauty,Quito,English,15 Days,0.055,$536,1.29,2964,134731,8.95,Altura Media
+Brand Awareness,Professionals 25-45,TikTok,Travel,Miami,Spanish,30 Days,0.061,$555,0.52,3130,136110,4.4,BrightWave
+Increase Sales,Women 25-34,Instagram,Finance,Austin,English,7 Days,0.079,$574,0.67,3299,137489,4.95,Pixel Norte
+Lead Generation,Men 45-60,Email,Education,Lima,Spanish,14 Days,0.073,$593,0.68,3471,138868,5.1,Mercurio Labs
+Product Launch,Students 18-24,LinkedIn,Fitness,Bogota,English,21 Days,0.079,$687,0.7,3646,140247,5.65,Andes Digital
+Customer Retention,Men 25-34,Facebook,Food,Mexico City,Spanish,45 Days,0.085,$631,0.88,3823,141626,6.2,BlueRoute
+Brand Awareness,Parents 30-45,Google Ads,Technology,Santiago,English,10 Days,0.091,$725,0.9,4004,143005,6.75,UrbanPulse
+Increase Sales,Women 18-24,YouTube,Fashion,New York,Spanish,15 Days,0.037,$669,0.84,4187,144384,7.3,NovaMarket
+Lead Generation,Men 35-44,TikTok,Beauty,Los Angeles,English,30 Days,0.031,$688,0.93,4372,145763,8.25,Altura Media
+Product Launch,Professionals 25-45,Instagram,Travel,Chicago,Spanish,7 Days,0.037,$87,1.65,4561,147142,8.8,BrightWave
+Customer Retention,Women 25-34,Email,Finance,Quito,English,14 Days,0.043,$106,1.35,4752,148521,8.95,Pixel Norte
+Brand Awareness,Men 45-60,LinkedIn,Education,Miami,Spanish,21 Days,0.049,$200,0.83,4946,149900,4.0,Mercurio Labs
+Increase Sales,Students 18-24,Facebook,Fitness,Austin,English,45 Days,0.067,$144,1.05,5143,151279,4.55,Andes Digital
+Lead Generation,Men 25-34,Google Ads,Food,Lima,Spanish,10 Days,0.061,$238,1.03,2747,152658,5.1,BlueRoute
+Product Launch,Parents 30-45,YouTube,Technology,Bogota,English,15 Days,0.067,$182,1.2,2926,154037,5.65,UrbanPulse
+Customer Retention,Women 18-24,TikTok,Fashion,Mexico City,Spanish,30 Days,0.073,$201,1.34,3108,155416,6.6,NovaMarket
+Brand Awareness,Men 35-44,Instagram,Beauty,Santiago,English,7 Days,0.079,$220,1.44,3292,156795,7.15,Altura Media
+Increase Sales,Professionals 25-45,Email,Travel,New York,Spanish,14 Days,0.097,$239,1.55,289,13174,7.3,BrightWave
+Lead Generation,Women 25-34,LinkedIn,Finance,Los Angeles,English,21 Days,0.091,$333,1.53,334,14553,7.85,Pixel Norte
+Product Launch,Men 45-60,Facebook,Education,Chicago,Spanish,45 Days,0.025,$277,1.05,382,15932,8.4,Mercurio Labs
+Customer Retention,Students 18-24,Google Ads,Fitness,Quito,English,10 Days,0.031,$371,1.08,432,17311,8.95,Andes Digital
+Brand Awareness,Men 25-34,YouTube,Food,Miami,Spanish,15 Days,0.037,$315,0.7,485,18690,4.0,BlueRoute
+Increase Sales,Parents 30-45,TikTok,Technology,Austin,English,30 Days,0.055,$334,0.89,541,20069,4.95,UrbanPulse
+Lead Generation,Women 18-24,Instagram,Fashion,Lima,Spanish,7 Days,0.049,$353,0.94,600,21448,5.5,NovaMarket
+Product Launch,Men 35-44,Email,Beauty,Bogota,English,14 Days,0.055,$372,1.0,661,22827,5.65,Altura Media
+Customer Retention,Professionals 25-45,LinkedIn,Travel,Mexico City,Spanish,21 Days,0.061,$466,1.03,726,24206,6.2,BrightWave
+Brand Awareness,Women 25-34,Facebook,Finance,Santiago,English,45 Days,0.067,$410,1.2,793,25585,6.75,Pixel Norte
+Increase Sales,Men 45-60,Google Ads,Education,New York,Spanish,10 Days,0.085,$504,1.28,862,26964,7.3,Mercurio Labs
+Lead Generation,Students 18-24,YouTube,Fitness,Los Angeles,English,15 Days,0.079,$448,1.04,935,28343,7.85,Andes Digital
+Product Launch,Men 25-34,TikTok,Food,Chicago,Spanish,30 Days,0.085,$467,1.18,1010,29722,8.8,BlueRoute
+Customer Retention,Parents 30-45,Instagram,Technology,Quito,English,7 Days,0.091,$486,1.28,559,31101,9.35,UrbanPulse
+Brand Awareness,Women 18-24,Email,Fashion,Miami,Spanish,14 Days,0.025,$505,0.51,617,32480,4.0,NovaMarket
+Increase Sales,Men 35-44,LinkedIn,Beauty,Austin,English,21 Days,0.043,$599,0.58,677,33859,4.55,Altura Media
+Lead Generation,Professionals 25-45,Facebook,Travel,Lima,Spanish,45 Days,0.037,$543,0.7,739,35238,5.1,BrightWave
+Product Launch,Women 25-34,Google Ads,Finance,Bogota,English,10 Days,0.043,$637,0.73,805,36617,5.65,Pixel Norte
+Customer Retention,Men 45-60,YouTube,Education,Mexico City,Spanish,15 Days,0.049,$581,0.9,873,37996,6.2,Mercurio Labs
+Brand Awareness,Students 18-24,TikTok,Fitness,Santiago,English,30 Days,0.055,$600,1.05,945,39375,7.15,Andes Digital
+Increase Sales,Men 25-34,Instagram,Food,New York,Spanish,7 Days,0.073,$619,0.83,1018,40754,7.7,BlueRoute
+Lead Generation,Parents 30-45,Email,Technology,Los Angeles,English,14 Days,0.067,$638,0.84,1095,42133,7.85,UrbanPulse
+Product Launch,Women 18-24,LinkedIn,Fashion,Chicago,Spanish,21 Days,0.073,$732,0.87,1174,43512,8.4,NovaMarket
+Customer Retention,Men 35-44,Facebook,Beauty,Quito,English,45 Days,0.079,$676,1.04,1256,44891,8.95,Altura Media
+Brand Awareness,Professionals 25-45,Google Ads,Travel,Miami,Spanish,10 Days,0.085,$770,0.52,1341,46270,4.0,BrightWave
+Increase Sales,Women 25-34,YouTube,Finance,Austin,English,15 Days,0.103,$94,1.36,1429,47649,4.55,Pixel Norte
+Lead Generation,Men 45-60,TikTok,Education,Lima,Spanish,30 Days,0.025,$113,1.17,1519,49028,5.5,Mercurio Labs
+Product Launch,Students 18-24,Instagram,Fitness,Bogota,English,7 Days,0.031,$132,1.27,1613,50407,6.05,Andes Digital
+Customer Retention,Men 25-34,Email,Food,Mexico City,Spanish,14 Days,0.037,$151,1.33,1708,51786,6.2,BlueRoute
+Brand Awareness,Parents 30-45,LinkedIn,Technology,Santiago,English,21 Days,0.043,$245,0.99,1807,53165,6.75,UrbanPulse
+Increase Sales,Women 18-24,Facebook,Fashion,New York,Spanish,45 Days,0.061,$189,1.21,981,54544,7.3,NovaMarket
+Lead Generation,Men 35-44,Google Ads,Beauty,Los Angeles,English,10 Days,0.055,$283,1.19,1062,55923,7.85,Altura Media
+Product Launch,Professionals 25-45,YouTube,Travel,Chicago,Spanish,15 Days,0.061,$227,1.37,1146,57302,8.4,BrightWave
+Customer Retention,Women 25-34,TikTok,Finance,Quito,English,30 Days,0.067,$246,1.51,1232,58681,9.35,Pixel Norte
+Brand Awareness,Men 45-60,Instagram,Education,Miami,Spanish,7 Days,0.073,$265,1.06,1321,60060,4.4,Mercurio Labs
+Increase Sales,Students 18-24,Email,Fitness,Austin,English,14 Days,0.091,$284,1.16,1413,61439,4.55,Andes Digital
+Lead Generation,Men 25-34,LinkedIn,Food,Lima,Spanish,21 Days,0.085,$378,1.14,1507,62818,5.1,BlueRoute
+Product Launch,Parents 30-45,Facebook,Technology,Bogota,English,45 Days,0.091,$322,1.32,1604,64197,5.65,UrbanPulse
+Customer Retention,Women 18-24,Google Ads,Fashion,Mexico City,Spanish,10 Days,0.025,$416,0.69,1704,65576,6.2,NovaMarket
+Brand Awareness,Men 35-44,YouTube,Beauty,Santiago,English,15 Days,0.031,$360,0.87,1807,66955,6.75,Altura Media
+Increase Sales,Professionals 25-45,TikTok,Travel,New York,Spanish,30 Days,0.049,$379,1.06,1913,68334,7.7,BrightWave
+Lead Generation,Women 25-34,Instagram,Finance,Los Angeles,English,7 Days,0.043,$398,1.11,2021,69713,8.25,Pixel Norte
+Product Launch,Men 45-60,Email,Education,Chicago,Spanish,14 Days,0.049,$417,1.17,2132,71092,8.4,Mercurio Labs
+Customer Retention,Students 18-24,LinkedIn,Fitness,Quito,English,21 Days,0.055,$511,1.19,2246,72471,8.95,Andes Digital
+Brand Awareness,Men 25-34,Facebook,Food,Miami,Spanish,45 Days,0.061,$455,0.82,2363,73850,4.0,BlueRoute
+Increase Sales,Parents 30-45,Google Ads,Technology,Austin,English,10 Days,0.079,$549,0.89,2482,75229,4.55,UrbanPulse
+Lead Generation,Women 18-24,YouTube,Fashion,Lima,Spanish,15 Days,0.073,$493,1.02,2604,76608,5.1,NovaMarket
+Product Launch,Men 35-44,TikTok,Beauty,Bogota,English,30 Days,0.079,$512,0.8,1403,77987,6.05,Altura Media
+Customer Retention,Professionals 25-45,Instagram,Travel,Mexico City,Spanish,7 Days,0.085,$531,0.9,1507,79366,6.6,BrightWave
+Brand Awareness,Women 25-34,Email,Finance,Santiago,English,14 Days,0.091,$550,0.96,1614,80745,6.75,Pixel Norte
+Increase Sales,Men 45-60,LinkedIn,Education,New York,Spanish,21 Days,0.037,$644,0.74,1724,82124,7.3,Mercurio Labs
+Lead Generation,Students 18-24,Facebook,Fitness,Los Angeles,English,45 Days,0.031,$588,0.87,1837,83503,7.85,Andes Digital
+Product Launch,Men 25-34,Google Ads,Food,Chicago,Spanish,10 Days,0.037,$682,0.9,1952,84882,8.4,BlueRoute
+Customer Retention,Parents 30-45,YouTube,Technology,Quito,English,15 Days,0.043,$626,1.07,2070,86261,8.95,UrbanPulse
+Brand Awareness,Women 18-24,TikTok,Fashion,Miami,Spanish,30 Days,0.049,$645,0.66,2191,87640,4.4,NovaMarket
+Increase Sales,Men 35-44,Instagram,Beauty,Austin,English,7 Days,0.067,$664,0.81,2314,89019,4.95,Altura Media
+Lead Generation,Professionals 25-45,Email,Travel,Lima,Spanish,14 Days,0.061,$683,0.46,2440,90398,5.1,BrightWave
+Product Launch,Women 25-34,LinkedIn,Finance,Bogota,English,21 Days,0.067,$777,0.49,2569,91777,5.65,Pixel Norte
+Customer Retention,Men 45-60,Facebook,Education,Mexico City,Spanish,45 Days,0.073,$101,1.28,2701,93156,6.2,Mercurio Labs
+Brand Awareness,Students 18-24,Google Ads,Fitness,Santiago,English,10 Days,0.079,$195,1.31,2836,94535,6.75,Andes Digital
+Increase Sales,Men 25-34,YouTube,Food,New York,Spanish,15 Days,0.097,$139,1.53,2973,95914,7.3,BlueRoute
+Lead Generation,Parents 30-45,TikTok,Technology,Los Angeles,English,30 Days,0.091,$158,1.62,3113,97293,8.25,UrbanPulse
+Product Launch,Women 18-24,Instagram,Fashion,Chicago,Spanish,7 Days,0.025,$177,1.43,3256,98672,8.8,NovaMarket
+Customer Retention,Men 35-44,Email,Beauty,Quito,English,14 Days,0.031,$196,1.49,3401,100051,8.95,Altura Media
+Brand Awareness,Professionals 25-45,LinkedIn,Travel,Miami,Spanish,21 Days,0.037,$290,0.97,1825,101430,4.0,BrightWave
+Increase Sales,Women 25-34,Facebook,Finance,Austin,English,45 Days,0.055,$234,0.83,1953,102809,4.55,Pixel Norte
+Lead Generation,Men 45-60,Google Ads,Education,Lima,Spanish,10 Days,0.049,$328,0.81,2083,104188,5.1,Mercurio Labs
+Product Launch,Students 18-24,YouTube,Fitness,Bogota,English,15 Days,0.055,$272,0.98,2216,105567,5.65,Andes Digital
+Customer Retention,Men 25-34,TikTok,Food,Mexico City,Spanish,30 Days,0.061,$291,1.12,2352,106946,6.6,BlueRoute
+Brand Awareness,Parents 30-45,Instagram,Technology,Santiago,English,7 Days,0.067,$310,1.22,2491,108325,7.15,UrbanPulse
+Increase Sales,Women 18-24,Email,Fashion,New York,Spanish,14 Days,0.085,$329,1.33,2632,109704,7.3,NovaMarket
+Lead Generation,Men 35-44,LinkedIn,Beauty,Los Angeles,English,21 Days,0.079,$423,1.31,2777,111083,7.85,Altura Media
+Product Launch,Professionals 25-45,Facebook,Travel,Chicago,Spanish,45 Days,0.085,$367,1.48,2924,112462,8.4,BrightWave
+Customer Retention,Women 25-34,Google Ads,Finance,Quito,English,10 Days,0.091,$461,1.51,3073,113841,8.95,Pixel Norte
+Brand Awareness,Men 45-60,YouTube,Education,Miami,Spanish,15 Days,0.025,$405,0.48,3226,115220,4.0,Mercurio Labs
+Increase Sales,Students 18-24,TikTok,Fitness,Austin,English,30 Days,0.043,$424,0.67,3381,116599,4.95,Andes Digital
+Lead Generation,Men 25-34,Instagram,Food,Lima,Spanish,7 Days,0.037,$443,0.72,3539,117978,5.5,BlueRoute
+Product Launch,Parents 30-45,Email,Technology,Bogota,English,14 Days,0.043,$462,0.79,3700,119357,5.65,UrbanPulse
+Customer Retention,Women 18-24,LinkedIn,Fashion,Mexico City,Spanish,21 Days,0.049,$556,0.81,3863,120736,6.2,NovaMarket
+Brand Awareness,Men 35-44,Facebook,Beauty,Santiago,English,45 Days,0.055,$500,0.99,4029,122115,6.75,Altura Media
+Increase Sales,Professionals 25-45,Google Ads,Travel,New York,Spanish,10 Days,0.073,$594,1.06,4198,123494,7.3,BrightWave
+Lead Generation,Women 25-34,YouTube,Finance,Los Angeles,English,15 Days,0.067,$538,1.19,2247,124873,7.85,Pixel Norte
+Product Launch,Men 45-60,TikTok,Education,Chicago,Spanish,30 Days,0.073,$557,1.32,2398,126252,8.8,Mercurio Labs
+Customer Retention,Students 18-24,Instagram,Fitness,Quito,English,7 Days,0.079,$576,1.07,2552,127631,9.35,Andes Digital
+Brand Awareness,Men 25-34,Email,Food,Miami,Spanish,14 Days,0.085,$595,0.58,2709,129010,4.0,BlueRoute
+Increase Sales,Parents 30-45,LinkedIn,Technology,Austin,English,21 Days,0.103,$689,0.65,2868,130389,4.55,UrbanPulse
+Lead Generation,Women 18-24,Facebook,Fashion,Lima,Spanish,45 Days,0.025,$633,0.49,3030,131768,5.1,NovaMarket
+Product Launch,Men 35-44,Google Ads,Beauty,Bogota,English,10 Days,0.031,$727,0.51,3195,133147,5.65,Altura Media
+Customer Retention,Professionals 25-45,YouTube,Travel,Mexico City,Spanish,15 Days,0.037,$671,0.69,3363,134526,6.2,BrightWave
+Brand Awareness,Women 25-34,TikTok,Finance,Santiago,English,30 Days,0.043,$690,0.83,3533,135905,7.15,Pixel Norte
+Increase Sales,Men 45-60,Instagram,Education,New York,Spanish,7 Days,0.061,$89,1.6,3706,137284,7.7,Mercurio Labs
+Lead Generation,Students 18-24,Email,Fitness,Los Angeles,English,14 Days,0.055,$108,1.61,3882,138663,7.85,Andes Digital
+Product Launch,Men 25-34,LinkedIn,Food,Chicago,Spanish,21 Days,0.061,$202,1.27,4061,140042,8.4,BlueRoute
+Customer Retention,Parents 30-45,Facebook,Technology,Quito,English,45 Days,0.067,$146,1.45,4242,141421,8.95,UrbanPulse
+Brand Awareness,Women 18-24,Google Ads,Fashion,Miami,Spanish,10 Days,0.073,$240,0.92,4426,142800,4.0,NovaMarket
+Increase Sales,Men 35-44,YouTube,Beauty,Austin,English,15 Days,0.091,$184,1.14,4613,144179,4.55,Altura Media
+Lead Generation,Professionals 25-45,TikTok,Travel,Lima,Spanish,30 Days,0.085,$203,1.24,4803,145558,5.5,BrightWave
+Product Launch,Women 25-34,Instagram,Finance,Bogota,English,7 Days,0.091,$222,1.34,4995,146937,6.05,Pixel Norte
+Customer Retention,Men 45-60,Email,Education,Mexico City,Spanish,14 Days,0.025,$241,1.11,2669,148316,6.2,Mercurio Labs
+Brand Awareness,Students 18-24,LinkedIn,Fitness,Santiago,English,21 Days,0.031,$335,1.13,2844,149695,6.75,Andes Digital
+Increase Sales,Men 25-34,Facebook,Food,New York,Spanish,45 Days,0.049,$279,1.36,3021,151074,7.3,BlueRoute
+Lead Generation,Parents 30-45,Google Ads,Technology,Los Angeles,English,10 Days,0.043,$373,0.97,3201,152453,7.85,UrbanPulse
+Product Launch,Women 18-24,YouTube,Fashion,Chicago,Spanish,15 Days,0.049,$317,1.15,3384,153832,8.4,NovaMarket
+Customer Retention,Men 35-44,TikTok,Beauty,Quito,English,30 Days,0.055,$336,1.29,3569,155211,9.35,Altura Media
+Brand Awareness,Professionals 25-45,Instagram,Travel,Miami,Spanish,7 Days,0.061,$355,0.84,3758,156590,4.4,BrightWave
+Increase Sales,Women 25-34,Email,Finance,Austin,English,14 Days,0.079,$374,0.95,324,12969,4.55,Pixel Norte
+Lead Generation,Men 45-60,LinkedIn,Education,Lima,Spanish,21 Days,0.073,$468,0.92,373,14348,5.1,Mercurio Labs
+Product Launch,Students 18-24,Facebook,Fitness,Bogota,English,45 Days,0.079,$412,1.1,424,15727,5.65,Andes Digital
+Customer Retention,Men 25-34,Google Ads,Food,Mexico City,Spanish,10 Days,0.085,$506,1.12,478,17106,6.2,BlueRoute
+Brand Awareness,Parents 30-45,YouTube,Technology,Santiago,English,15 Days,0.091,$450,1.3,536,18485,6.75,UrbanPulse
+Increase Sales,Women 18-24,TikTok,Fashion,New York,Spanish,30 Days,0.037,$469,0.84,595,19864,7.7,NovaMarket
+Lead Generation,Men 35-44,Instagram,Beauty,Los Angeles,English,7 Days,0.031,$488,0.89,658,21243,8.25,Altura Media
+Product Launch,Professionals 25-45,Email,Travel,Chicago,Spanish,14 Days,0.037,$507,0.95,723,22622,8.4,BrightWave
+Customer Retention,Women 25-34,LinkedIn,Finance,Quito,English,21 Days,0.043,$601,0.98,792,24001,8.95,Pixel Norte
+Brand Awareness,Men 45-60,Facebook,Education,Miami,Spanish,45 Days,0.049,$545,0.6,862,25380,4.0,Mercurio Labs
+Increase Sales,Students 18-24,Google Ads,Fitness,Austin,English,10 Days,0.067,$639,0.67,481,26759,4.55,Andes Digital
+Lead Generation,Men 25-34,YouTube,Food,Lima,Spanish,15 Days,0.061,$583,0.8,534,28138,5.1,BlueRoute
+Product Launch,Parents 30-45,TikTok,Technology,Bogota,English,30 Days,0.067,$602,0.94,590,29517,6.05,UrbanPulse
+Customer Retention,Women 18-24,Instagram,Fashion,Mexico City,Spanish,7 Days,0.073,$621,1.04,648,30896,6.6,NovaMarket
+Brand Awareness,Men 35-44,Email,Beauty,Santiago,English,14 Days,0.079,$640,0.74,710,32275,6.75,Altura Media
+Increase Sales,Professionals 25-45,LinkedIn,Travel,New York,Spanish,21 Days,0.097,$734,0.81,774,33654,7.3,BrightWave
+Lead Generation,Women 25-34,Facebook,Finance,Los Angeles,English,45 Days,0.091,$678,0.94,840,35033,7.85,Pixel Norte
+Product Launch,Men 45-60,Google Ads,Education,Chicago,Spanish,10 Days,0.025,$772,0.68,910,36412,8.4,Mercurio Labs
+Customer Retention,Students 18-24,YouTube,Fitness,Quito,English,15 Days,0.031,$96,1.47,982,37791,8.95,Andes Digital
+Brand Awareness,Men 25-34,TikTok,Food,Miami,Spanish,30 Days,0.037,$115,1.06,1057,39170,4.4,BlueRoute
+Increase Sales,Parents 30-45,Instagram,Technology,Austin,English,7 Days,0.055,$134,1.21,1135,40549,4.95,UrbanPulse
+Lead Generation,Women 18-24,Email,Fashion,Lima,Spanish,14 Days,0.049,$153,1.22,1215,41928,5.1,NovaMarket
+Product Launch,Men 35-44,LinkedIn,Beauty,Bogota,English,21 Days,0.055,$247,1.25,1299,43307,5.65,Altura Media
+Customer Retention,Professionals 25-45,Facebook,Travel,Mexico City,Spanish,45 Days,0.061,$191,1.06,1385,44686,6.2,BrightWave
+Brand Awareness,Women 25-34,Google Ads,Finance,Santiago,English,10 Days,0.067,$285,1.09,1474,46065,6.75,Pixel Norte
+Increase Sales,Men 45-60,YouTube,Education,New York,Spanish,15 Days,0.085,$229,1.31,1565,47444,7.3,Mercurio Labs
+Lead Generation,Students 18-24,TikTok,Fitness,Los Angeles,English,30 Days,0.079,$248,1.4,1659,48823,8.25,Andes Digital
+Product Launch,Men 25-34,Instagram,Food,Chicago,Spanish,7 Days,0.085,$267,1.5,903,50202,8.8,BlueRoute
+Customer Retention,Parents 30-45,Email,Technology,Quito,English,14 Days,0.091,$286,1.56,980,51581,8.95,UrbanPulse
+Brand Awareness,Women 18-24,LinkedIn,Fashion,Miami,Spanish,21 Days,0.025,$380,0.75,1059,52960,4.0,NovaMarket
+Increase Sales,Men 35-44,Facebook,Beauty,Austin,English,45 Days,0.043,$324,0.97,1141,54339,4.55,Altura Media
+Lead Generation,Professionals 25-45,Google Ads,Travel,Lima,Spanish,10 Days,0.037,$418,0.95,1225,55718,5.1,BrightWave
+Product Launch,Women 25-34,YouTube,Finance,Bogota,English,15 Days,0.043,$362,0.77,1313,57097,5.65,Pixel Norte
+Customer Retention,Men 45-60,TikTok,Education,Mexico City,Spanish,30 Days,0.049,$381,0.9,1403,58476,6.6,Mercurio Labs
+Brand Awareness,Students 18-24,Instagram,Fitness,Santiago,English,7 Days,0.055,$400,1.0,1496,59855,7.15,Andes Digital
+Increase Sales,Men 25-34,Email,Food,New York,Spanish,14 Days,0.073,$419,1.11,1592,61234,7.3,BlueRoute
+Lead Generation,Parents 30-45,LinkedIn,Technology,Los Angeles,English,21 Days,0.067,$513,1.09,1690,62613,7.85,UrbanPulse
+Product Launch,Women 18-24,Facebook,Fashion,Chicago,Spanish,45 Days,0.073,$457,1.27,1791,63992,8.4,NovaMarket
+Customer Retention,Men 35-44,Google Ads,Beauty,Quito,English,10 Days,0.079,$551,1.29,1895,65371,8.95,Altura Media
+Brand Awareness,Professionals 25-45,YouTube,Travel,Miami,Spanish,15 Days,0.085,$495,0.92,2002,66750,4.0,BrightWave
+Increase Sales,Women 25-34,TikTok,Finance,Austin,English,30 Days,0.103,$514,1.1,2111,68129,4.95,Pixel Norte
+Lead Generation,Men 45-60,Instagram,Education,Lima,Spanish,7 Days,0.025,$533,0.51,2224,69508,5.5,Mercurio Labs
+Product Launch,Students 18-24,Email,Fitness,Bogota,English,14 Days,0.031,$552,0.57,2339,70887,5.65,Andes Digital
+Customer Retention,Men 25-34,LinkedIn,Food,Mexico City,Spanish,21 Days,0.037,$646,0.59,2457,72266,6.2,BlueRoute
+Brand Awareness,Parents 30-45,Facebook,Technology,Santiago,English,45 Days,0.043,$590,0.77,1325,73645,6.75,UrbanPulse
+Increase Sales,Women 18-24,Google Ads,Fashion,New York,Spanish,10 Days,0.061,$684,0.84,1425,75024,7.3,NovaMarket
+Lead Generation,Men 35-44,YouTube,Beauty,Los Angeles,English,15 Days,0.055,$628,0.97,1528,76403,7.85,Altura Media
+Product Launch,Professionals 25-45,TikTok,Travel,Chicago,Spanish,30 Days,0.061,$647,1.11,1633,77782,8.8,BrightWave
+Customer Retention,Women 25-34,Instagram,Finance,Quito,English,7 Days,0.067,$666,1.21,1741,79161,9.35,Pixel Norte
+Brand Awareness,Men 45-60,Email,Education,Miami,Spanish,14 Days,0.073,$685,0.72,1852,80540,4.0,Mercurio Labs
+Increase Sales,Students 18-24,LinkedIn,Fitness,Austin,English,21 Days,0.091,$779,0.43,1966,81919,4.55,Andes Digital
+Lead Generation,Men 25-34,Facebook,Food,Lima,Spanish,45 Days,0.085,$103,1.18,2082,83298,5.1,BlueRoute
+Product Launch,Parents 30-45,Google Ads,Technology,Bogota,English,10 Days,0.091,$197,1.2,2201,84677,5.65,UrbanPulse
+Customer Retention,Women 18-24,YouTube,Fashion,Mexico City,Spanish,15 Days,0.025,$141,1.09,2323,86056,6.2,NovaMarket
+Brand Awareness,Men 35-44,TikTok,Beauty,Santiago,English,30 Days,0.031,$160,1.23,2448,87435,7.15,Altura Media
+Increase Sales,Professionals 25-45,Instagram,Travel,New York,Spanish,7 Days,0.049,$179,1.38,2575,88814,7.7,BrightWave
+Lead Generation,Women 25-34,Email,Finance,Los Angeles,English,14 Days,0.043,$198,1.39,2705,90193,7.85,Pixel Norte
+Product Launch,Men 45-60,LinkedIn,Education,Chicago,Spanish,21 Days,0.049,$292,1.41,2838,91572,8.4,Mercurio Labs
+Customer Retention,Students 18-24,Facebook,Fitness,Quito,English,45 Days,0.055,$236,1.59,2974,92951,8.95,Andes Digital
+Brand Awareness,Men 25-34,Google Ads,Food,Miami,Spanish,10 Days,0.061,$330,0.7,3112,94330,4.0,BlueRoute
+Increase Sales,Parents 30-45,YouTube,Technology,Austin,English,15 Days,0.079,$274,0.93,3254,95709,4.55,UrbanPulse
+Lead Generation,Women 18-24,TikTok,Fashion,Lima,Spanish,30 Days,0.073,$293,1.02,1747,97088,5.5,NovaMarket
+Product Launch,Men 35-44,Instagram,Beauty,Bogota,English,7 Days,0.079,$312,1.12,1870,98467,6.05,Altura Media
+Customer Retention,Professionals 25-45,Email,Travel,Mexico City,Spanish,14 Days,0.085,$331,1.18,1996,99846,6.2,BrightWave
+Brand Awareness,Women 25-34,LinkedIn,Finance,Santiago,English,21 Days,0.091,$425,1.2,2125,101225,6.75,Pixel Norte
+Increase Sales,Men 45-60,Facebook,Education,New York,Spanish,45 Days,0.037,$369,1.14,2257,102604,7.3,Mercurio Labs
+Lead Generation,Students 18-24,Google Ads,Fitness,Los Angeles,English,10 Days,0.031,$463,1.12,2391,103983,7.85,Andes Digital
+Product Launch,Men 25-34,YouTube,Food,Chicago,Spanish,15 Days,0.037,$407,1.29,2528,105362,8.4,BlueRoute
+Customer Retention,Parents 30-45,TikTok,Technology,Quito,English,30 Days,0.043,$426,1.07,2668,106741,9.35,UrbanPulse
+Brand Awareness,Women 18-24,Instagram,Fashion,Miami,Spanish,7 Days,0.049,$445,0.62,2811,108120,4.4,NovaMarket
+Increase Sales,Men 35-44,Email,Beauty,Austin,English,14 Days,0.067,$464,0.73,2956,109499,4.55,Altura Media
+Lead Generation,Professionals 25-45,LinkedIn,Travel,Lima,Spanish,21 Days,0.061,$558,0.71,3104,110878,5.1,BrightWave
+Product Launch,Women 25-34,Facebook,Finance,Bogota,English,45 Days,0.067,$502,0.88,3255,112257,5.65,Pixel Norte
+Customer Retention,Men 45-60,Google Ads,Education,Mexico City,Spanish,10 Days,0.073,$596,0.91,3409,113636,6.2,Mercurio Labs
+Brand Awareness,Students 18-24,YouTube,Fitness,Santiago,English,15 Days,0.079,$540,1.08,3565,115015,6.75,Andes Digital
+Increase Sales,Men 25-34,TikTok,Food,New York,Spanish,30 Days,0.097,$559,1.27,3724,116394,7.7,BlueRoute
+Lead Generation,Parents 30-45,Instagram,Technology,Los Angeles,English,7 Days,0.091,$578,1.32,3886,117773,8.25,UrbanPulse
+Product Launch,Women 18-24,Email,Fashion,Chicago,Spanish,14 Days,0.025,$597,0.73,4051,119152,8.4,NovaMarket
+Customer Retention,Men 35-44,LinkedIn,Beauty,Quito,English,21 Days,0.031,$691,0.76,2169,120531,8.95,Altura Media
+Brand Awareness,Professionals 25-45,Facebook,Travel,Miami,Spanish,45 Days,0.037,$635,0.38,2316,121910,4.0,BrightWave
+Increase Sales,Women 25-34,Google Ads,Finance,Austin,English,10 Days,0.055,$729,0.46,2465,123289,4.55,Pixel Norte
+Lead Generation,Men 45-60,YouTube,Education,Lima,Spanish,15 Days,0.049,$673,0.58,2618,124668,5.1,Mercurio Labs
+Product Launch,Students 18-24,TikTok,Fitness,Bogota,English,30 Days,0.055,$692,0.72,2773,126047,6.05,Andes Digital
+Customer Retention,Men 25-34,Instagram,Food,Mexico City,Spanish,7 Days,0.061,$91,1.44,2930,127426,6.6,BlueRoute
+Brand Awareness,Parents 30-45,Email,Technology,Santiago,English,14 Days,0.067,$110,1.5,3091,128805,6.75,UrbanPulse
+Increase Sales,Women 18-24,LinkedIn,Fashion,New York,Spanish,21 Days,0.085,$204,1.58,3254,130184,7.3,NovaMarket
+Lead Generation,Men 35-44,Facebook,Beauty,Los Angeles,English,45 Days,0.079,$148,1.34,3420,131563,7.85,Altura Media
+Product Launch,Professionals 25-45,Google Ads,Travel,Chicago,Spanish,10 Days,0.085,$242,1.37,3589,132942,8.4,BrightWave
+Customer Retention,Women 25-34,YouTube,Finance,Quito,English,15 Days,0.091,$186,1.54,3760,134321,8.95,Pixel Norte
