@@ -1,0 +1,1019 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Automotive Marketing Content LoRA Studio</title>
+  <style>
+    :root {
+      --ink: #17212b;
+      --muted: #5d6875;
+      --line: #d7dde5;
+      --paper: #f7f8fa;
+      --white: #ffffff;
+      --teal: #0f766e;
+      --teal-soft: #dff4f1;
+      --amber: #b7791f;
+      --amber-soft: #fff3d6;
+      --blue: #1f5fbf;
+      --blue-soft: #e8f0ff;
+      --red: #b42318;
+      --red-soft: #ffe7e4;
+      --green: #287d3c;
+      --green-soft: #e8f7ed;
+      --shadow: 0 22px 70px rgba(23, 33, 43, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      color: var(--ink);
+      background: #dce2ea;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      letter-spacing: 0;
+    }
+
+    body {
+      overflow: hidden;
+    }
+
+    .deck {
+      height: 100vh;
+      width: 100vw;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .slide {
+      display: none;
+      width: min(1180px, calc(100vw - 48px));
+      height: min(664px, calc(100vh - 48px));
+      background: var(--paper);
+      border: 1px solid rgba(23, 33, 43, 0.12);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide.active {
+      display: grid;
+    }
+
+    .slide-inner {
+      padding: 54px 64px 52px;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 28px;
+      height: 100%;
+    }
+
+    .eyebrow {
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 760;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 0 0 10px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 56px;
+      line-height: 1.02;
+      max-width: 760px;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 40px;
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      font-size: 17px;
+      line-height: 1.22;
+      margin-bottom: 10px;
+    }
+
+    p,
+    li {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.45;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    .lead {
+      color: #2d3947;
+      font-size: 23px;
+      line-height: 1.35;
+      max-width: 760px;
+      margin-top: 20px;
+    }
+
+    .footer {
+      position: absolute;
+      left: 64px;
+      right: 64px;
+      bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #6c7580;
+      font-size: 12px;
+      font-weight: 650;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .footer::before {
+      content: "";
+      position: absolute;
+      top: -14px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: rgba(23, 33, 43, 0.1);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 7px 12px;
+      border: 1px solid var(--line);
+      background: var(--white);
+      color: #263342;
+      font-size: 13px;
+      font-weight: 720;
+    }
+
+    .hero-layout {
+      grid-template-columns: 1fr 390px;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-image {
+      height: 440px;
+      margin: 0;
+      border: 1px solid var(--line);
+      background: var(--white);
+      overflow: hidden;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: 22px;
+      min-height: 130px;
+    }
+
+    .card.teal {
+      background: var(--teal-soft);
+      border-color: #a7d9d4;
+    }
+
+    .card.amber {
+      background: var(--amber-soft);
+      border-color: #efd18a;
+    }
+
+    .card.blue {
+      background: var(--blue-soft);
+      border-color: #bed1ff;
+    }
+
+    .card.red {
+      background: var(--red-soft);
+      border-color: #ffb7ad;
+    }
+
+    .card.green {
+      background: var(--green-soft);
+      border-color: #b6e1c3;
+    }
+
+    .metric {
+      font-size: 34px;
+      line-height: 1;
+      color: var(--ink);
+      font-weight: 840;
+      margin-bottom: 9px;
+    }
+
+    .small {
+      font-size: 14px;
+      line-height: 1.42;
+    }
+
+    .problem-strip {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr 1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .big-number {
+      font-size: 74px;
+      font-weight: 860;
+      color: var(--red);
+      line-height: 0.95;
+      margin-bottom: 12px;
+    }
+
+    .solution-flow {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .flow-step {
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: 18px 16px;
+      min-height: 170px;
+      position: relative;
+    }
+
+    .flow-step::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -9px;
+      width: 16px;
+      height: 2px;
+      background: #7b8794;
+    }
+
+    .flow-step:last-child::after {
+      display: none;
+    }
+
+    .step-index {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      background: var(--ink);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .data-contract {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .codebox {
+      background: #111827;
+      color: #d1d5db;
+      border: 1px solid #374151;
+      padding: 18px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 13px;
+      line-height: 1.42;
+      white-space: pre-wrap;
+      min-height: 190px;
+    }
+
+    .codebox b {
+      color: #93c5fd;
+      font-weight: 700;
+    }
+
+    .architecture {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 26px;
+      align-items: center;
+    }
+
+    .lane {
+      border: 1px solid var(--line);
+      background: var(--white);
+      padding: 18px;
+    }
+
+    .lane h3 {
+      margin-bottom: 14px;
+    }
+
+    .node {
+      border: 1px solid #c6cfda;
+      background: #f9fafb;
+      padding: 11px 12px;
+      font-size: 13px;
+      color: #334155;
+      margin-bottom: 10px;
+      font-weight: 680;
+    }
+
+    .node.output {
+      background: var(--green-soft);
+      border-color: #b6e1c3;
+    }
+
+    .node.train {
+      background: var(--blue-soft);
+      border-color: #bed1ff;
+    }
+
+    .join {
+      border: 2px solid var(--teal);
+      background: var(--teal-soft);
+      padding: 18px;
+      text-align: center;
+      font-weight: 830;
+      color: #0b4f4a;
+    }
+
+    .stack-table {
+      display: grid;
+      grid-template-columns: 1.1fr 1.5fr 1.2fr;
+      border: 1px solid var(--line);
+      background: var(--white);
+    }
+
+    .stack-table > div {
+      padding: 15px 16px;
+      border-bottom: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .stack-table > div:nth-child(3n) {
+      border-right: 0;
+    }
+
+    .stack-head {
+      color: var(--ink);
+      background: #eef2f7;
+      font-weight: 820;
+    }
+
+    .demo-board {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 18px;
+      align-items: stretch;
+      min-height: 0;
+    }
+
+    .mock-ui {
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: 18px 18px 16px;
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .brief-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .brief-item {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 8px;
+      padding: 8px 10px;
+      border: 1px solid #d8dee8;
+      background: #f8fafc;
+      color: #263342;
+      font-size: 12px;
+      line-height: 1.22;
+    }
+
+    .brief-item strong {
+      color: var(--teal);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .demo-grid .card {
+      min-height: 0;
+      padding: 22px 22px 18px;
+    }
+
+    .demo-grid p,
+    .demo-grid li {
+      font-size: 15px;
+      line-height: 1.38;
+    }
+
+    .eval-matrix {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .roi {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .formula {
+      background: #111827;
+      color: #f8fafc;
+      border: 1px solid #374151;
+      padding: 24px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 17px;
+      line-height: 1.5;
+    }
+
+    .roadmap {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .roadmap .card {
+      min-height: 220px;
+    }
+
+    .nav {
+      position: fixed;
+      right: 26px;
+      bottom: 22px;
+      display: flex;
+      gap: 8px;
+      z-index: 20;
+    }
+
+    .nav button {
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(23, 33, 43, 0.22);
+      background: var(--white);
+      color: var(--ink);
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .nav button:hover {
+      background: #eef2f7;
+    }
+
+    @media (max-width: 880px) {
+      body {
+        overflow: auto;
+      }
+
+      .deck {
+        display: block;
+        height: auto;
+        padding: 0;
+      }
+
+      .slide,
+      .slide.active {
+        display: grid;
+        width: 100vw;
+        min-height: 100vh;
+        height: auto;
+        box-shadow: none;
+        border-left: 0;
+        border-right: 0;
+      }
+
+      .slide-inner {
+        padding: 34px 22px 70px;
+      }
+
+      h1 {
+        font-size: 38px;
+      }
+
+      h2 {
+        font-size: 30px;
+      }
+
+      .hero-layout,
+      .grid-2,
+      .grid-3,
+      .problem-strip,
+      .data-contract,
+      .architecture,
+      .demo-board,
+      .demo-grid,
+      .roi,
+      .roadmap,
+      .solution-flow,
+      .eval-matrix {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-step::after {
+        display: none;
+      }
+
+      .hero-image {
+        height: 360px;
+      }
+
+      .footer {
+        left: 22px;
+        right: 22px;
+      }
+
+      .nav {
+        display: none;
+      }
+    }
+
+    @media print {
+      @page {
+        size: 16in 9in;
+        margin: 0;
+      }
+
+      body {
+        background: var(--white);
+        overflow: visible;
+      }
+
+      .deck {
+        display: block;
+        padding: 0;
+        height: auto;
+      }
+
+      .slide,
+      .slide.active {
+        display: grid;
+        width: 16in;
+        height: 9in;
+        page-break-after: always;
+        box-shadow: none;
+        border: 0;
+      }
+
+      .nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck" id="deck">
+    <section class="slide active">
+      <div class="slide-inner hero-layout">
+        <div>
+          <p class="eyebrow">Proyecto final · Aplicaciones generativas</p>
+          <h1>Automotive Marketing Content LoRA Studio</h1>
+          <p class="lead">Pipeline generativo multimodal para producir campañas automotrices: estrategia comercial con LLM fine-tuned y assets visuales con SDXL + DreamBooth LoRA.</p>
+          <div class="pill-row">
+            <span class="pill">Python</span>
+            <span class="pill">Transformers</span>
+            <span class="pill">Unsloth + LoRA/QLoRA</span>
+            <span class="pill">Diffusers</span>
+            <span class="pill">SDXL</span>
+          </div>
+        </div>
+        <figure class="hero-image" aria-label="BMW Vision Neue Klasse campaign visual">
+          <img
+            src="https://www.motorpy.com/wp-content/uploads/2023/09/NUEVO-1-768x543.jpg"
+            alt="BMW Vision Neue Klasse campaign visual"
+          />
+        </figure>
+      </div>
+      <div class="footer"><span>Automotive Marketing Content LoRA Studio</span><span>1 / 10</span></div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-inner">
+        <div>
+          <p class="eyebrow">Problema</p>
+          <h2>Crear campañas automotrices consistentes sigue siendo lento y fragmentado</h2>
+        </div>
+        <div class="problem-strip">
+          <div class="card red">
+            <div class="big-number">3</div>
+            <h3>Equipos desconectados</h3>
+            <p>Ventas, marketing y diseño suelen trabajar con briefs, copies y referencias visuales en ciclos separados.</p>
+          </div>
+          <div class="card amber">
+            <div class="big-number">N</div>
+            <h3>Variantes por canal</h3>
+            <p>Website, Instagram, TikTok, email, showroom y billboard requieren formatos, composiciones y mensajes distintos.</p>
+          </div>
+          <div class="card blue">
+            <div class="big-number">?</div>
+            <h3>Identidad visual fragil</h3>
+            <p>Los modelos base pueden generar autos genericos, deformaciones o piezas poco alineadas al modelo real.</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer"><span>Problema a resolver</span><span>2 / 10</span></div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-inner">
+        <div>
+          <p class="eyebrow">Justificacion</p>
+          <h2>El caso combina impacto comercial con requisitos tecnicos del curso</h2>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Valor para el negocio</h3>
+            <ul>
+              <li>Reducir tiempo de preparacion de propuestas y conceptos visuales.</li>
+              <li>Generar variantes por target, canal, promoción y etapa del funnel.</li>
+              <li>Acelerar pruebas A/B antes de una sesion formal de diseño.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Valor tecnico</h3>
+            <ul>
+              <li>Fine-tuning eficiente de LLM con Unsloth y LoRA/QLoRA.</li>
+              <li>Generacion de imagenes integrada con Diffusers.</li>
+              <li>Comparativa base vs fine-tuned con metricas y ejemplos.</li>
+            </ul>
+          </div>
+          <div class="card teal">
+            <div class="metric">200+</div>
+            <h3>Ejemplos SFT</h3>
+            <p>Dataset JSON de propuestas comerciales automotrices para especializar el LLM.</p>
+          </div>
+          <div class="card green">
+            <div class="metric">20-40</div>
+            <h3>Imagenes recomendadas</h3>
+            <p>Dataset visual con captions en ingles para entrenar la identidad del auto.</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer"><span>Descripcion y justificacion</span><span>3 / 10</span></div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-inner">
+        <div>
+          <p class="eyebrow">Solucion propuesta</p>
+          <h2>Un pipeline de texto a estrategia y de estrategia a assets visuales</h2>
+        </div>
+        <div class="solution-flow">
+          <div class="flow-step">
+            <div class="step-index">1</div>
+            <h3>Brief</h3>
+            <p class="small">Marca, modelo, target, objetivo, ciudad, promoción y tono de campaña.</p>
+          </div>
+          <div class="flow-step">
+            <div class="step-index">2</div>
+            <h3>LLM fine-tuned</h3>
+            <p class="small">Genera estrategia, canal, copy, KPIs, image prompt y negative prompt.</p>
+          </div>
+          <div class="flow-step">
+            <div class="step-index">3</div>
+            <h3>Prompt builder</h3>
+            <p class="small">Adapta el prompt por placement: web, social, print, showroom y billboard.</p>
+          </div>
+          <div class="flow-step">
+            <div class="step-index">4</div>
+            <h3>SDXL + LoRA</h3>
+            <p class="small">Usa DreamBooth LoRA para conservar identidad visual del auto.</p>
+          </div>
+          <div class="flow-step">
+            <div class="step-index">5</div>
+            <h3>Assets</h3>
+            <p class="small">Genera PNG, metadata, seeds, dimensiones, latencia y notas de evaluacion.</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer"><span>Propuesta de solucion</span><span>4 / 10</span></div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-inner">
+        <div>
+          <p class="eyebrow">Datos</p>
+          <h2>Dos contratos de entrada: uno textual y uno visual</h2>
+        </div>
+        <div class="data-contract">
+          <div>
+            <h3>LLM fine-tuning</h3>
+            <div class="codebox"><b>data/commercial_campaign_sft/</b>
+commercial_campaign_sft.json
+
+[
+  {
+    "instruction": "...",
+    "input": "Goal | Vehicle | ROI ...",
+    "output": {
+      "strategy": "...",
+      "channel_plan": "...",
+      "ad_copy": "...",
+      "image_prompt": "...",
+      "negative_prompt": "...",
+      "kpis": [...],
+      "business_note": "..."
+    }
+  }
+]</div>
+          </div>
+          <div>
+            <h3>Diffusion fine-tuning</h3>
+            <div class="codebox"><b>data/car_campaign_lora/</b>
+metadata.csv
+images/
+
+file_path,caption
+./images/car_01.png,
+"REALCARMODEL real car model,
+front three quarter view,
+premium automotive photography"
+
+Trigger word:
+REALCARMODEL</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer"><span>Dataset minimo 200 ejemplos · CSV visual</span><span>5 / 10</span></div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-inner">
+        <div>
+          <p class="eyebrow">Arquitectura</p>
+          <h2>Dos adapters especializados se integran en una demo end-to-end</h2>
+        </div>
+        <div class="architecture">
+          <div class="lane">
+            <h3>Rama textual</h3>
+            <div class="node">commercial_campaign_sft.json · 200+ ejemplos</div>
+            <div class="node">Preparacion SFT · train/eval</div>
+            <div class="node train">Qwen 4B + Unsloth + LoRA/QLoRA</div>
+            <div class="node output">Adapter comercial · outputs/commercial-qwen-lora</div>
+            <div class="node output">JSON: estrategia, canal, copy, KPIs, prompts</div>
+          </div>
+          <div class="lane">
+            <h3>Rama visual</h3>
+            <div class="node">metadata.csv + imagenes del auto</div>
+            <div class="node">Validacion de captions y trigger word</div>
+            <div class="node train">SDXL + DreamBooth LoRA via Diffusers</div>
+            <div class="node output">Adapter visual · outputs/automotive-lora</div>
+            <div class="node output">Assets por placement · outputs/generated_assets</div>
+          </div>
+          <div class="join" style="grid-column: 1 / -1;">Brief de campaña + LLM fine-tuned + Prompt builder + SDXL LoRA visual</div>
+        </div>
+      </div>
+      <div class="footer"><span>Diagrama de arquitectura del sistema</span><span>6 / 10</span></div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-inner">
+        <div>
+          <p class="eyebrow">Herramientas</p>
+          <h2>Stack tecnico alineado a los requisitos del proyecto final</h2>
+        </div>
+        <div class="stack-table">
+          <div class="stack-head">Requisito</div>
+          <div class="stack-head">Implementacion</div>
+          <div class="stack-head">Evidencia</div>
+          <div>Python</div>
+          <div>Notebook Colab/Kaggle secuencial</div>
+          <div>notebooks/proyecto_final_automotive_lora_marketing_full_colab_kaggle.ipynb</div>
+          <div>Transformers</div>
+          <div>Carga e inferencia del LLM instructivo</div>
+          <div>Qwen 4B base vs adapter fine-tuned</div>
+          <div>Unsloth + LoRA/QLoRA</div>
+          <div>Fine-tuning eficiente del LLM en 4-bit</div>
+          <div>outputs/commercial-qwen-lora</div>
+          <div>Diffusers</div>
+          <div>SDXL + DreamBooth LoRA visual</div>
+          <div>outputs/automotive-lora</div>
+          <div>Evaluacion</div>
+          <div>JSON validity, cobertura de campos, Jaccard, latencia, comparacion visual</div>
+          <div>outputs/evaluation</div>
+        </div>
+      </div>
+      <div class="footer"><span>Herramientas y tecnologias utilizadas</span><span>7 / 10</span></div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-inner">
+        <div>
+          <p class="eyebrow">Demo funcional</p>
+          <h2>La ejecucion termina en una propuesta comercial y una galeria de assets</h2>
+        </div>
+        <div class="demo-board">
+          <div class="mock-ui">
+            <h3>Entrada de demo</h3>
+            <div class="brief-list">
+              <div class="brief-item"><strong>Objetivo</strong><span>Lead Generation</span></div>
+              <div class="brief-item"><strong>Vehiculo</strong><span>BMW Vision Neue Klasse</span></div>
+              <div class="brief-item"><strong>Audiencia</strong><span>Profesionales eco-conscious 30-45</span></div>
+              <div class="brief-item"><strong>Canales</strong><span>Website hero + Instagram</span></div>
+              <div class="brief-item"><strong>Tono</strong><span>Premium, innovador, emocional</span></div>
+              <div class="brief-item"><strong>Trigger</strong><span>REALCARMODEL</span></div>
+            </div>
+          </div>
+          <div class="demo-grid">
+            <div class="card teal">
+              <h3>Salida del LLM</h3>
+              <ul>
+                <li>Strategy</li>
+                <li>Channel plan</li>
+                <li>Ad copy</li>
+                <li>Image prompt</li>
+                <li>KPIs</li>
+              </ul>
+            </div>
+            <div class="card blue">
+              <h3>Assets generados</h3>
+              <ul>
+                <li>Website hero</li>
+                <li>Instagram feed</li>
+                <li>Vertical story</li>
+                <li>Showroom poster</li>
+                <li>Billboard y email</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Controles</h3>
+              <p>Flags para ejecutar por etapas: entrenamiento LLM, entrenamiento visual, generacion de imagenes y comparaciones.</p>
+            </div>
+            <div class="card">
+              <h3>Reproducibilidad</h3>
+              <p>Seeds, rutas, metadata, prompts, dimensiones y latencia quedan guardados en `outputs/evaluation`.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer"><span>Demo integrada</span><span>8 / 10</span></div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-inner">
+        <div>
+          <p class="eyebrow">Evaluacion y ROI</p>
+          <h2>Medimos calidad estructural, comparacion cualitativa e impacto comercial</h2>
+        </div>
+        <div class="roi">
+          <div>
+            <div class="eval-matrix">
+              <div class="card">
+                <div class="metric">JSON</div>
+                <p class="small">Validez y cobertura de campos del LLM fine-tuned.</p>
+              </div>
+              <div class="card">
+                <div class="metric">J</div>
+                <p class="small">Jaccard simple contra salida esperada.</p>
+              </div>
+              <div class="card">
+                <div class="metric">A/B</div>
+                <p class="small">Base vs fine-tuned para texto e imagen.</p>
+              </div>
+              <div class="card">
+                <div class="metric">ms</div>
+                <p class="small">Latencia por respuesta y por asset.</p>
+              </div>
+            </div>
+          </div>
+          <div class="formula">ahorro creativo = 12 * 6 * 35
+= USD 2,520
+
+ahorro comercial = 2 * 40 * 25
+= USD 2,000
+
+costo IA = USD 300
+
+ROI = (2,520 + 2,000 - 300) / 300
+= 14.07x</div>
+        </div>
+      </div>
+      <div class="footer"><span>Analisis comparativo y valor de negocio</span><span>9 / 10</span></div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-inner">
+        <div>
+          <p class="eyebrow">Conclusiones</p>
+          <h2>El prototipo demuestra un flujo generativo multimodal extensible</h2>
+        </div>
+        <div class="roadmap">
+          <div class="card green">
+            <h3>Conclusiones</h3>
+            <p>El LLM especializa la capa comercial y el LoRA visual mantiene consistencia del auto en multiples placements.</p>
+          </div>
+          <div class="card blue">
+            <h3>Mejora 1</h3>
+            <p>Probar hiperparametros: learning rate, LoRA rank/alpha, steps, guidance scale y resolucion.</p>
+          </div>
+          <div class="card amber">
+            <h3>Mejora 2</h3>
+            <p>Agregar evaluacion humana con rubrica: identidad del auto, calidad publicitaria y alineacion al brief.</p>
+          </div>
+          <div class="card">
+            <h3>Mejora 3</h3>
+            <p>Extender a marcas reales, flujos multi-idioma y exportacion automatica a formatos de campaña.</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer"><span>Conclusiones y mejoras futuras</span><span>10 / 10</span></div>
+    </section>
+  </main>
+
+  <div class="nav" aria-hidden="true">
+    <button type="button" id="prevBtn">‹</button>
+    <button type="button" id="nextBtn">›</button>
+  </div>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    let current = 0;
+
+    function showSlide(index) {
+      current = Math.max(0, Math.min(index, slides.length - 1));
+      slides.forEach((slide, i) => slide.classList.toggle("active", i === current));
+      window.location.hash = `slide-${current + 1}`;
+    }
+
+    function parseHash() {
+      const match = window.location.hash.match(/slide-(\d+)/);
+      if (!match) return 0;
+      return Math.max(0, Math.min(Number(match[1]) - 1, slides.length - 1));
+    }
+
+    prevBtn.addEventListener("click", () => showSlide(current - 1));
+    nextBtn.addEventListener("click", () => showSlide(current + 1));
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight" || event.key === "PageDown" || event.key === " ") {
+        event.preventDefault();
+        showSlide(current + 1);
+      }
+      if (event.key === "ArrowLeft" || event.key === "PageUp") {
+        event.preventDefault();
+        showSlide(current - 1);
+      }
+      if (event.key === "Home") showSlide(0);
+      if (event.key === "End") showSlide(slides.length - 1);
+    });
+    window.addEventListener("hashchange", () => showSlide(parseHash()));
+    showSlide(parseHash());
+  </script>
+</body>
+</html>
