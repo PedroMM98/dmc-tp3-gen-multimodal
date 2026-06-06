@@ -4,8 +4,8 @@
 
 ```mermaid
 flowchart TD
-    A[commercial_campaign_sft.json 200+ ejemplos] --> B[Preparacion SFT train/eval]
-    B --> C[Modelo base Qwen 4B]
+    A[commercial_campaign_sft_corrected_300.json 300 ejemplos] --> B[Preparacion SFT train/eval]
+    B --> C[Modelo base Qwen3.5-2B]
     C --> D[Unsloth + LoRA/QLoRA]
     D --> E[Adapter LoRA comercial]
     F[Brief de campana automotriz] --> G[Inferencia LLM fine-tuned]
@@ -27,9 +27,9 @@ flowchart TD
 
 ## Componentes
 
-- **Dataset LLM SFT**: JSON con minimo 200 ejemplos en `data/commercial_campaign_sft/commercial_campaign_sft.json`, usando `instruction`, `input` y `output`.
+- **Dataset LLM SFT**: JSON corregido con 300 ejemplos en `data/commercial_campaing_sft/commercial_campaign_sft_corrected_300.json`, usando `instruction`, `input` y `output`.
 - **Preparacion SFT**: validacion de esquema, split train/eval y formateo instruct/chat para Unsloth.
-- **Modelo LLM base**: Qwen 4B instruct cargado con Unsloth en 4-bit.
+- **Modelo LLM base**: Qwen3.5-2B cargado con Unsloth.
 - **Fine-tuning LLM**: LoRA/QLoRA para aprender propuestas comerciales automotrices.
 - **Adapter comercial**: salida en `outputs/commercial-qwen-lora/`.
 - **Dataset visual**: `metadata.csv` en `data/car_campaign_lora/` con columnas `file_path` y `caption`, mas imagenes en `data/car_campaign_lora/images/`.
@@ -47,10 +47,10 @@ flowchart TD
 ### LLM fine-tuning
 
 ```text
-data/commercial_campaign_sft/commercial_campaign_sft.json
+data/commercial_campaing_sft/commercial_campaign_sft_corrected_300.json
 ```
 
-El archivo debe ser una lista JSON con minimo 200 objetos:
+El archivo debe ser una lista JSON con 300 objetos:
 
 ```json
 {
@@ -58,6 +58,8 @@ El archivo debe ser una lista JSON con minimo 200 objetos:
   "input": "Goal: Lead Generation | Vehicle: hybrid SUV | Price range: mid-range | Audience: Families 35-44 | Customer sector: urban families | Historical channel: Instagram | City: Miami | Language: English | Duration: 30 Days | Promotion: test drive + financing | ROI: 2.10 | Conversion rate: 0.08 | Engagement: 9",
   "output": {
     "strategy": "Promote safety, family space, and fuel efficiency, closing with a clear invitation to book a test drive.",
+    "recommended_channel": "Instagram",
+    "channel_rationale": "Instagram matches a visual family audience and supports lead forms for test drive intent.",
     "channel_plan": "Use Instagram for visual awareness and lead generation forms; reinforce with Meta Ads remarketing for interested prospects.",
     "ad_copy": "Give your family more space, technology, and efficiency. Book your test drive today and discover the hybrid SUV built for city life.",
     "image_prompt": "REALCARMODEL real car model in an English Instagram ad for a mid-range hybrid SUV dealership campaign targeting urban families in Miami, bright city background, premium automotive commercial photography, clear space for headline, no readable text",

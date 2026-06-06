@@ -1,9 +1,9 @@
 # Automotive Marketing Content LoRA Studio Demo
 
-Demo academica multimodal para generar campanas automotrices completas:
+Demo academica multimodal para generar campañas automotrices completas:
 
 1. fine-tuning de un LLM con Unsloth + LoRA/QLoRA para producir estrategia, canal, copy, KPIs y prompts visuales;
-2. fine-tuning visual con DreamBooth LoRA sobre SDXL para aprender el estilo de campanas del concesionario Autoespar y referencias visuales de autos/logos;
+2. fine-tuning visual con DreamBooth LoRA sobre SDXL para aprender el estilo de campañas del concesionario Autoespar y referencias visuales de autos/logos;
 3. generacion de assets para web, social, showroom, email, print y highway banner;
 4. comparacion LLM base vs LLM fine-tuned y SDXL base vs SDXL + LoRA visual.
 
@@ -31,10 +31,10 @@ docs/demo_architecture.md
 
 ### LLM Fine-Tuning
 
-El notebook completo espera un JSON con minimo 200 ejemplos:
+El notebook completo espera el JSON SFT corregido con 300 ejemplos:
 
 ```text
-data/commercial_campaign_sft/commercial_campaign_sft.json
+data/commercial_campaing_sft/commercial_campaign_sft_corrected_300.json
 ```
 
 Cada ejemplo debe tener:
@@ -45,6 +45,8 @@ Cada ejemplo debe tener:
   "input": "Goal: Lead Generation | Vehicle: hybrid SUV | Price range: mid-range | Audience: Families 35-44 | Customer sector: urban families | Historical channel: Instagram | City: Miami | Language: English | Duration: 30 Days | Promotion: test drive + financing | ROI: 2.10 | Conversion rate: 0.08 | Engagement: 9",
   "output": {
     "strategy": "Promote safety, family space, and fuel efficiency, closing with a clear invitation to book a test drive.",
+    "recommended_channel": "Instagram",
+    "channel_rationale": "Instagram matches a visual family audience and supports lead forms for test drive intent.",
     "channel_plan": "Use Instagram for visual awareness and lead generation forms; reinforce with Meta Ads remarketing for interested prospects.",
     "ad_copy": "Give your family more space, technology, and efficiency. Book your test drive today and discover the hybrid SUV built for city life.",
     "image_prompt": "AUTOESPAR automotive dealership marketing banner in an English Instagram ad for a mid-range hybrid SUV campaign targeting urban families in Miami, bright city background, premium automotive commercial photography, clear space for headline, no readable text",
@@ -56,15 +58,11 @@ Cada ejemplo debe tener:
 
 `negative_prompt` no es obligatorio en el JSON SFT. El notebook agrega un negative prompt deterministico en la etapa de generacion con Diffusers; si algun ejemplo lo trae como campo extra, se puede usar, pero no se valida como requisito del fine-tuning del LLM.
 
-Nota de ruta: actualmente hay un archivo en `data/commercial_campaing_sft/commercial_campaign_sft.json`. La carpeta tiene un typo: `campaing`. Para que el notebook lo lea sin cambios, mueve o copia ese archivo a:
-
-```text
-data/commercial_campaign_sft/commercial_campaign_sft.json
-```
+Nota de ruta: el notebook usa la carpeta existente `data/commercial_campaing_sft/`, conservando el typo `campaing`, para leer directamente el JSON corregido de 300 ejemplos.
 
 ### Diffusion Fine-Tuning
 
-Coloca las imagenes de campanas, autos y logos en:
+Coloca las imagenes de campañas, autos y logos en:
 
 ```text
 data/car_campaign_lora/images/
@@ -85,13 +83,13 @@ file_path,caption
 
 Para el dataset actual, `metadata_template.csv` ya esta preparado con 29 filas:
 
-- 23 filas de banners/campanas del concesionario Autoespar.
+- 23 filas de banners/campañas del concesionario Autoespar.
 - 6 filas suplementarias tomadas directamente de `docs/images_descriptions_start/lora_caption_dataset.csv`.
 
 Las primeras 23 captions usan `AUTOESPAR` como trigger word e incluyen:
 
-- estilo de banner/campana de concesionario Autoespar;
-- modelo Toyota, ano, motor, transmision, campana, garantia y concesionario cuando aplica;
+- estilo de banner/campaña de concesionario Autoespar;
+- modelo Toyota, ano, motor, transmision, campaña, garantia y concesionario cuando aplica;
 - area de `condiciones` al pie de la imagen, normalmente dentro de un rectangulo negro, blanco o rojo con texto legal pequeno;
 - telefono de cotizacion o servicio cuando aparece en la fuente, por ejemplo despues de `cotiza al` o `agenda tu servicio al`.
 
@@ -103,7 +101,7 @@ Para la demo final se recomiendan 20-40 imagenes con vistas frontal, lateral, tr
 
 - Recomendado: GPU con 16 GB VRAM o mas.
 - Prueba rapida visual en T4: resolucion 512, batch size 1, gradient accumulation 4, 250 steps.
-- El LLM se entrena con Qwen 4B en 4-bit usando Unsloth.
+- El LLM se entrena con Qwen3.5-2B usando Unsloth + LoRA/QLoRA, con perfil conservador para Colab T4.
 - Si la GPU no alcanza para todo en una sesion, ejecuta primero el fine-tuning del LLM y luego el LoRA visual en otra sesion.
 - En CPU, los entrenamientos y la generacion SDXL no son practicos.
 
@@ -111,7 +109,7 @@ Para la demo final se recomiendan 20-40 imagenes con vistas frontal, lateral, tr
 
 1. Activar GPU.
 2. Subir o clonar el repositorio.
-3. Copiar el JSON SFT a `data/commercial_campaign_sft/commercial_campaign_sft.json`.
+3. Usar el JSON SFT corregido en `data/commercial_campaing_sft/commercial_campaign_sft_corrected_300.json`.
 4. Agregar imagenes en `data/car_campaign_lora/images/`.
 5. Usar `data/car_campaign_lora/metadata_template.csv` como base; si el notebook espera `metadata.csv`, copiarlo a `data/car_campaign_lora/metadata.csv`.
 6. Abrir `notebooks/proyecto_final_automotive_lora_marketing_full_colab_kaggle.ipynb`.
@@ -176,7 +174,7 @@ El notebook debe mostrar:
 Hipotesis de ROI:
 
 ```text
-ROI estimado = ((horas creativas ahorradas * costo hora equipo creativo * campanas mensuales) + (horas comerciales ahorradas * costo hora comercial * propuestas mensuales) - costo operativo IA) / costo operativo IA
+ROI estimado = ((horas creativas ahorradas * costo hora equipo creativo * campañas mensuales) + (horas comerciales ahorradas * costo hora comercial * propuestas mensuales) - costo operativo IA) / costo operativo IA
 ```
 
 Ejemplo:
@@ -190,7 +188,7 @@ ROI = (2,520 + 2,000 - 300) / 300 = 14.07x
 
 ## Limitaciones Conocidas
 
-- La calidad depende de los 200+ ejemplos SFT, las captions y la variedad de imagenes.
+- La calidad depende de los 300 ejemplos SFT corregidos, las captions y la variedad de imagenes.
 - Los modelos de difusion pueden deformar texto o logos; los prompts piden `no readable text`.
 - Las imagenes finales requieren revision humana antes de uso comercial.
 - Colab/Kaggle pueden cambiar disponibilidad de GPU y memoria.
