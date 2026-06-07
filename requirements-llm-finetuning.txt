@@ -1,0 +1,16 @@
+# Base Python dependencies for the Qwen3 LLM fine-tuning flow.
+# Install the CUDA-specific torch stack and Unsloth separately in Colab/Kaggle,
+# because those wheels depend on the runtime GPU/CUDA image.
+pydantic>=2.7,<3
+pandas==2.2.2
+numpy>=1.26,<2.1
+scikit-learn>=1.2,<1.9
+datasets>=3.4.1,<4.0.0
+transformers>=4.56.2,<4.57.0
+trl>=0.18.2,<0.25.0,!=0.19.0
+peft
+accelerate
+bitsandbytes
+safetensors
+huggingface_hub
+matplotlib
