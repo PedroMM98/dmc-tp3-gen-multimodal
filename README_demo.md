@@ -31,7 +31,27 @@ docs/demo_architecture.md
 
 ### LLM Fine-Tuning
 
-El notebook completo espera el JSON SFT corregido con 300 ejemplos:
+El flujo de LLM ya esta modularizado en `src/` bajo:
+
+```text
+src/dmc_gen_multimodal/llm_tuning/
+```
+
+La configuracion principal se valida con Pydantic y se carga desde:
+
+```text
+configs/llm_tuning/qwen3_text_sft.json
+```
+
+El pipeline modular cubre:
+
+- carga y split deterministico del dataset SFT;
+- formateo de prompts para entrenamiento y generacion;
+- entrenamiento LoRA/QLoRA con Unsloth sobre Qwen3;
+- evaluacion baseline vs fine-tuned;
+- construccion de metricas y tablas comparativas.
+
+El dataset esperado para este flujo es el JSON SFT corregido con 300 ejemplos:
 
 ```text
 data/commercial_campaing_sft/commercial_campaign_sft_corrected_300.json
@@ -56,9 +76,37 @@ Cada ejemplo debe tener:
 }
 ```
 
-`negative_prompt` no es obligatorio en el JSON SFT. El notebook agrega un negative prompt deterministico en la etapa de generacion con Diffusers; si algun ejemplo lo trae como campo extra, se puede usar, pero no se valida como requisito del fine-tuning del LLM.
+`negative_prompt` no es obligatorio en el JSON SFT. El flujo LLM no lo usa como campo requerido; ese prompt negativo se resuelve despues, en la etapa visual con Diffusers.
 
-Nota de ruta: el notebook usa la carpeta existente `data/commercial_campaing_sft/`, conservando el typo `campaing`, para leer directamente el JSON corregido de 300 ejemplos.
+Nota de ruta: se conserva la carpeta existente `data/commercial_campaing_sft/`, incluido el typo `campaing`, para mantener compatibilidad con notebooks y outputs previos.
+
+Ejecucion recomendada en entorno Python del proyecto:
+
+```text
+requirements-llm-finetuning.txt
+src/dmc_gen_multimodal/llm_tuning/
+configs/llm_tuning/qwen3_text_sft.json
+```
+
+Si se quiere correr el flujo LLM en Colab con GPU T4 o Kaggle, sigue disponible este notebook dedicado:
+
+```text
+notebooks/proyecto_final_qwen3_text_llm_sft_colab_kaggle.ipynb
+```
+
+Ese notebook ahora funciona como orquestador practico para runtime GPU y tambien incluye una celda final para consumir la version modular basada en `src/`.
+
+Para construir el reporte tecnico del LLM y generar el HTML final de diagnostico:
+
+```text
+notebooks/reporte_tecnico_qwen3_evaluation_colab_kaggle.ipynb
+```
+
+Ese notebook consume los outputs de evaluacion del LLM y escribe:
+
+```text
+outputs/sft_llm_qwen3/evaluation/qwen3_text_technical_report.html
+```
 
 ### Diffusion Fine-Tuning
 
@@ -101,7 +149,7 @@ Para la demo final se recomiendan 20-40 imagenes con vistas frontal, lateral, tr
 
 - Recomendado: GPU con 16 GB VRAM o mas.
 - Prueba rapida visual en T4: resolucion 512, batch size 1, gradient accumulation 4, 250 steps.
-- El LLM se entrena con Qwen3.5-2B usando Unsloth + LoRA/QLoRA, con perfil conservador para Colab T4.
+- El LLM text-only se entrena con Qwen3 usando Unsloth + LoRA/QLoRA, con configuracion pensada para Colab T4.
 - Si la GPU no alcanza para todo en una sesion, ejecuta primero el fine-tuning del LLM y luego el LoRA visual en otra sesion.
 - En CPU, los entrenamientos y la generacion SDXL no son practicos.
 
@@ -110,11 +158,13 @@ Para la demo final se recomiendan 20-40 imagenes con vistas frontal, lateral, tr
 1. Activar GPU.
 2. Subir o clonar el repositorio.
 3. Usar el JSON SFT corregido en `data/commercial_campaing_sft/commercial_campaign_sft_corrected_300.json`.
-4. Agregar imagenes en `data/car_campaign_lora/images/`.
-5. Usar `data/car_campaign_lora/metadata_template.csv` como base; si el notebook espera `metadata.csv`, copiarlo a `data/car_campaign_lora/metadata.csv`.
-6. Abrir `notebooks/proyecto_final_automotive_lora_marketing_full_colab_kaggle.ipynb`.
-7. Ejecutar celdas de validacion de datos.
-8. Cambiar flags cuando los datos esten listos:
+4. Para correr solo el flujo LLM, abrir `notebooks/proyecto_final_qwen3_text_llm_sft_colab_kaggle.ipynb`.
+5. Para generar el reporte tecnico HTML del LLM despues de evaluar, abrir `notebooks/reporte_tecnico_qwen3_evaluation_colab_kaggle.ipynb`.
+6. Para correr el flujo multimodal completo, abrir `notebooks/proyecto_final_automotive_lora_marketing_full_colab_kaggle.ipynb`.
+7. Agregar imagenes en `data/car_campaign_lora/images/` solo si tambien vas a ejecutar el LoRA visual.
+8. Usar `data/car_campaign_lora/metadata_template.csv` como base; si el notebook espera `metadata.csv`, copiarlo a `data/car_campaign_lora/metadata.csv`.
+9. Ejecutar celdas de validacion de datos.
+10. Cambiar flags cuando los datos esten listos:
 
 ```python
 RUN_LLM_TRAINING = True
@@ -122,15 +172,15 @@ RUN_VISUAL_TRAINING = True
 RUN_IMAGE_GENERATION = True
 ```
 
-9. Usar `TRIGGER_WORD = "AUTOESPAR"` para el dataset visual actual.
-10. Ejecutar el notebook de arriba hacia abajo.
+11. Usar `TRIGGER_WORD = "AUTOESPAR"` para el dataset visual actual.
+12. Ejecutar el notebook de arriba hacia abajo.
 
 ## Outputs Esperados
 
 LLM fine-tuned:
 
 ```text
-outputs/commercial-qwen-lora/
+outputs/sft_llm_qwen3/qwen3-text-commercial-lora/
 ```
 
 LoRA visual:
@@ -148,13 +198,17 @@ outputs/generated_assets/
 Evaluaciones y metadata:
 
 ```text
-outputs/evaluation/
+outputs/sft_llm_qwen3/evaluation/
 ```
 
 Archivos relevantes:
 
-- `outputs/evaluation/llm_base_vs_finetuned_outputs.json`
-- `outputs/evaluation/llm_evaluation_report.csv`
+- `outputs/sft_llm_qwen3/evaluation/qwen3_text_base_outputs.json`
+- `outputs/sft_llm_qwen3/evaluation/qwen3_text_finetuned_outputs.json`
+- `outputs/sft_llm_qwen3/evaluation/qwen3_text_llm_metrics.csv`
+- `outputs/sft_llm_qwen3/evaluation/qwen3_text_comparison_table.csv`
+- `outputs/sft_llm_qwen3/evaluation/qwen3_text_technical_report.html`
+  Este archivo se genera desde `notebooks/reporte_tecnico_qwen3_evaluation_colab_kaggle.ipynb`.
 - `outputs/evaluation/visual_training_dataset_summary.csv`
 - `outputs/evaluation/image_generation_metadata.json`
 - `outputs/evaluation/sdxl_base_vs_visual_lora_comparison.json`

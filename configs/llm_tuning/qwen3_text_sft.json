@@ -1,0 +1,78 @@
+{
+  "paths": {
+    "project_root": ".",
+    "data_root": "data",
+    "sft_dir": "data/commercial_campaing_sft",
+    "sft_json_path": "data/commercial_campaing_sft/commercial_campaign_sft_corrected_300.json",
+    "sft_train_path": "data/commercial_campaing_sft/train_qwen3_text.json",
+    "sft_eval_path": "data/commercial_campaing_sft/eval_qwen3_text.json",
+    "output_root": "outputs/sft_llm_qwen3",
+    "adapter_output_dir": "outputs/sft_llm_qwen3/qwen3-text-commercial-lora",
+    "evaluation_output_dir": "outputs/sft_llm_qwen3/evaluation"
+  },
+  "model": {
+    "base_model": "unsloth/Qwen3-4B-Instruct-2507-unsloth-bnb-4bit",
+    "fallback_model": "unsloth/Qwen3-1.7B-unsloth-bnb-4bit",
+    "max_seq_length": 1024,
+    "load_in_4bit": true,
+    "load_in_16bit": false,
+    "fast_inference": false
+  },
+  "dataset": {
+    "train_fraction": 0.8,
+    "seed": 3407,
+    "require_min_sft_examples": 300,
+    "expected_output_fields": [
+      "strategy",
+      "recommended_channel",
+      "channel_rationale",
+      "channel_plan",
+      "ad_copy",
+      "image_prompt",
+      "kpis",
+      "business_note"
+    ]
+  },
+  "evaluation": {
+    "max_eval_examples": 60,
+    "max_new_tokens": 600,
+    "base_output_filename": "qwen3_text_base_outputs.json",
+    "finetuned_output_filename": "qwen3_text_finetuned_outputs.json",
+    "metrics_filename": "qwen3_text_llm_metrics.csv",
+    "comparison_table_filename": "qwen3_text_comparison_table.csv"
+  },
+  "training": {
+    "lora_r": 8,
+    "lora_alpha": 16,
+    "lora_dropout": 0.0,
+    "lora_bias": "none",
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "use_gradient_checkpointing": "unsloth",
+    "per_device_train_batch_size": 1,
+    "gradient_accumulation_steps": 8,
+    "num_train_epochs": 10,
+    "learning_rate": 0.0002,
+    "warmup_ratio": 0.05,
+    "lr_scheduler_type": "linear",
+    "optim": "adamw_8bit",
+    "weight_decay": 0.01,
+    "logging_steps": 5,
+    "save_strategy": "epoch",
+    "eval_strategy": "no",
+    "report_to": "none"
+  },
+  "run": {
+    "run_baseline_eval": false,
+    "run_llm_training": false,
+    "run_finetuned_eval": false,
+    "build_comparison_report": true
+  }
+}

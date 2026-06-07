@@ -1,0 +1,71 @@
+[
+  {
+    "example_id": 0,
+    "model": "base",
+    "input": "Objetivo: Model Launch | Vehiculo: Toyota Corolla Cross Hybrid 2025 | Categoria: SUV híbrida | Rango: mid-range ($26,140) | Audiencia: Adventure Seekers 28-45 | Sector cliente: conductores orientados a aventura | Canal historico: LinkedIn | Ciudad: Los Angeles | Idioma: Spanish | Duracion: 14 Days | Promocion: bono de mantenimiento | ROI: 1.42 | Conversion rate: 0.03 | Engagement: 4",
+    "expected": {
+      "strategy": "Posicionar el Toyota Corolla Cross Hybrid 2025 alrededor de tecnología híbrida auto-recargable y seguridad familiar, conectando la oferta con conductores orientados a aventura. Usar bono de mantenimiento como detonador de conversión y alinear el mensaje para impulsar model launch con una acción comercial clara.",
+      "recommended_channel": "YouTube",
+      "channel_rationale": "YouTube es ideal para explicar beneficios del modelo, generar consideración y construir recordación visual antes de empujar remarketing.",
+      "channel_plan": "Durante 2 semanas, usar video corto para introducir beneficios del vehículo y luego retargetear en Meta o Search a quienes vieron más del 50% del video.",
+      "ad_copy": "Conoce el Toyota Corolla Cross Hybrid 2025, pensado para conductores orientados a aventura. Aprovecha bono de mantenimiento y agenda hoy tu test drive con una propuesta que combina valor, confianza y respaldo Toyota.",
+      "image_prompt": "Spanish YouTube ad for Toyota Corolla Cross Hybrid 2025, mid-range ($26,140), targeting conductores orientados a aventura in Los Angeles, professional automotive commercial photography, highlighting tecnología híbrida auto-recargable and seguridad familiar, dealership-quality lighting, 1280x720px thumbnail composition, high contrast, clear focal point visible at small size, upper left negative space",
+      "kpis": [
+        "Reach",
+        "Leads",
+        "Engagement Rate",
+        "CTR",
+        "ROI"
+      ],
+      "business_note": "Medir view-through rate y porcentaje de visualización; usar audiencias de video para remarketing y no evaluar el canal solo por clic directo. Para Toyota Corolla Cross Hybrid 2025 en Los Angeles, validar también el encaje del rango mid-range ($26,140) con la propuesta promocional antes de escalar."
+    },
+    "generated": "```json\n{\n  \"strategy\": \"Foco en la experiencia de aventura y sostenibilidad del Toyota Corolla Cross Hybrid 2025, destacando su rendimiento híbrido, diseño moderno y capacidad para explorar rutas off-road. El enfoque será en generar conexión emocional con el público de aventureros que valora la tecnología y la responsabilidad ambiental.\",\n  \"recommended_channel\": \"Instagram\",\n  \"channel_rationale\": \"Instagram es el canal más efectivo para llegar a la audiencia de aventureros jóvenes (28-45 años) en Los Angeles, ya que combina contenido visual impactante, stories interactivas y reels que reflejan la vida de aventura. Además, permite una alta tasa de engagement y es más efectivo que LinkedIn para este segmento en términos de conversión y conexión emocional.\",\n  \"channel_plan\": [\n    \"Publicar 3 reels",
+    "latency_sec": 39.427973599000325
+  },
+  {
+    "example_id": 1,
+    "model": "base",
+    "input": "Objetivo: Inventory Promotion | Vehiculo: Toyota 4Runner 2025 | Categoria: SUV premium | Rango: premium ($55,000) | Audiencia: Familias urbanas 32-45 | Sector cliente: familias con hijos en etapa escolar | Canal historico: Email | Ciudad: Austin | Idioma: English | Duracion: 60 Days | Promocion: garantía extendida | ROI: 3.06 | Conversion rate: 0.04 | Engagement: 9",
+    "expected": {
+      "strategy": "Position Toyota 4Runner 2025 around presencia robusta and capacidad off-road, connecting the offer to familias con hijos en etapa escolar. Use garantía extendida as the conversion trigger and align the message to drive inventory promotion with clear dealership action.",
+      "recommended_channel": "Google Ads",
+      "channel_rationale": "Google Ads captura intención activa de búsqueda y favorece inventory promotion cuando el usuario ya está comparando opciones o financiamiento.",
+      "channel_plan": "Durante 8 semanas, priorizar Search/Performance Max con keywords de alta intención, extensiones de promoción y remarketing a visitantes de fichas de modelo.",
+      "ad_copy": "Discover the Toyota 4Runner 2025 built for familias con hijos en etapa escolar. Take advantage of garantía extendida and book your test drive today with a dealership experience designed to convert interest into action.",
+      "image_prompt": "English Google Ads ad for Toyota 4Runner 2025, premium ($55,000), targeting familias con hijos en etapa escolar in Austin, professional automotive commercial photography, highlighting presencia robusta and capacidad off-road, dealership-quality lighting, 1200x628px responsive display style, clear focal vehicle, clean background, safe space for CTA overlay",
+      "kpis": [
+        "VDP Views",
+        "Leads generados",
+        "CTR",
+        "Qualified Inquiries",
+        "ROI"
+      ],
+      "business_note": "Vigilar CPC, tasa de conversión y términos de búsqueda; aislar keywords con intención de compra y separar búsquedas informativas. Para Toyota 4Runner 2025 en Austin, validar también el encaje del rango premium ($55,000) con la propuesta promocional antes de escalar."
+    },
+    "generated": "```json\n{\n  \"strategy\": \"Launch a targeted email campaign with personalized content to highlight the Toyota 4Runner 2025's premium features and extended warranty, focusing on family safety and reliability for urban families with school-aged children.\",\n  \"recommended_channel\": \"Email\",\n  \"channel_rationale\": \"Email has proven effective in our historical performance with a strong engagement rate of 9%, and it allows for personalized messaging tailored to the family audience in Austin. The channel enables direct communication with high-intent users who are actively considering premium SUVs for family use.\",\n  \"channel_plan\": [\n    \"Segment the email list into families with children aged 5-14 to deliver highly relevant content.\",\n    \"Include a personalized subject line referencing the recipient's child's age or school grade.\",\n    \"Feature high-quality visuals of the 4Runner 2025 in urban Austin settings, emphasizing family-friendly features like advanced safety tech and spacious interior.\",\n    \"Highlight the",
+    "latency_sec": 16.822830652999983
+  },
+  {
+    "example_id": 2,
+    "model": "base",
+    "input": "Objetivo: Financing Promotion | Vehiculo: Toyota RAV4 Hybrid 2026 | Categoria: SUV híbrida | Rango: premium ($38,000) | Audiencia: Luxury Shoppers 35-55 | Sector cliente: clientes premium de alto valor | Canal historico: Instagram | Ciudad: San Diego | Idioma: English | Duracion: 21 Days | Promocion: bono de mantenimiento | ROI: 2.58 | Conversion rate: 0.07 | Engagement: 8",
+    "expected": {
+      "strategy": "Position Toyota RAV4 Hybrid 2026 around tecnología avanzada and potencia eficiente, connecting the offer to clientes premium de alto valor. Use bono de mantenimiento as the conversion trigger and align the message to drive financing promotion with clear dealership action.",
+      "recommended_channel": "Google Ads",
+      "channel_rationale": "Google Ads captura intención activa de búsqueda y favorece financing promotion cuando el usuario ya está comparando opciones o financiamiento.",
+      "channel_plan": "Durante 3 semanas, priorizar Search/Performance Max con keywords de alta intención, extensiones de promoción y remarketing a visitantes de fichas de modelo.",
+      "ad_copy": "Discover the Toyota RAV4 Hybrid 2026 built for clientes premium de alto valor. Take advantage of bono de mantenimiento and book your test drive today with a dealership experience designed to convert interest into action.",
+      "image_prompt": "English Google Ads ad for Toyota RAV4 Hybrid 2026, premium ($38,000), targeting clientes premium de alto valor in San Diego, professional automotive commercial photography, highlighting tecnología avanzada and potencia eficiente, dealership-quality lighting, 1200x628px responsive display style, clear focal vehicle, clean background, safe space for CTA overlay",
+      "kpis": [
+        "Finance Applications",
+        "Leads generados",
+        "Costo por Lead",
+        "Conversion Rate",
+        "ROI"
+      ],
+      "business_note": "Vigilar CPC, tasa de conversión y términos de búsqueda; aislar keywords con intención de compra y separar búsquedas informativas. Para Toyota RAV4 Hybrid 2026 en San Diego, validar también el encaje del rango premium ($38,000) con la propuesta promocional antes de escalar."
+    },
+    "generated": "```json\n{\n  \"strategy\": \"Launch a targeted Instagram campaign focused on showcasing the Toyota RAV4 Hybrid 2026 as a premium, eco-conscious luxury SUV, emphasizing its advanced hybrid technology, long-term cost savings, and the included complimentary maintenance package. The campaign will leverage high-quality visuals and influencer collaborations to build trust and appeal to luxury shoppers in San Diego’s affluent neighborhoods.\",\n  \"recommended_channel\": \"Instagram\",\n  \"channel_rationale\": \"Instagram remains the most effective channel for luxury vehicle targeting, especially among affluent audiences aged 35-55 in urban areas like San Diego. Its visual-first format aligns perfectly with the premium aesthetic of the Toyota RAV4 Hybrid 2026, and its strong engagement metrics (8% engagement rate) support high conversion potential. Additionally, Instagram’s advanced targeting tools allow precise audience segmentation based on lifestyle, interests, and location.\",\n  \"channel_plan\": [\n    \"Day 1-7: Launch",
+    "latency_sec": 17.262799480000012
+  }
+]
