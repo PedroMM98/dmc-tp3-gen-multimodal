@@ -173,8 +173,7 @@ data/car_campaign_lora/
     real_car_model_01.png
     real_car_model_02.png
     ...
-  metadata.csv
-  metadata_template.csv
+  image_metadata.csv
 ```
 
 El metadata debe tener una fila por imagen:
@@ -186,7 +185,7 @@ file_path,caption
 
 Decision de dataset:
 
-- `metadata.csv` sera la fuente de verdad para captions.
+- `image_metadata.csv` sera la fuente de verdad para captions.
 - No se usaran archivos `.txt` sidecar por imagen en esta demo.
 - La razon es que el CSV facilita auditoria, edicion en lote, validacion de rutas y versionamiento cuando trabajemos con modelos reales.
 - Esta estructura tambien deja listo el dataset para futuros scripts caption-aware si se decide entrenar con captions por imagen.

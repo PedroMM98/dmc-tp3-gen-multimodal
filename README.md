@@ -15,10 +15,20 @@ Notebook completo:
 notebooks/proyecto_final_automotive_lora_marketing_full_colab_kaggle.ipynb
 ```
 
+Notebooks actuales de trabajo:
+
+```text
+notebooks/proyecto_final_automotive_lora_marketing_full_colab_kaggle.ipynb
+notebooks/proyecto_final_qwen3_text_llm_sft_colab_kaggle.ipynb
+notebooks/proyecto_final_diffusion_lora_colab_drive.ipynb
+notebooks/reporte_tecnico_qwen3_evaluation_colab_kaggle.ipynb
+notebooks/caption_generator_using-granite_vision_4_1_4b.ipynb
+```
+
 Notebook visual anterior, conservado como referencia:
 
 ```text
-notebooks/proyecto_final_automotive_lora_marketing_colab_kaggle.ipynb
+notebooks/archive/proyecto_final_automotive_lora_marketing_colab_kaggle.ipynb
 ```
 
 Arquitectura:
@@ -119,29 +129,30 @@ data/car_campaign_lora/images/
 Cada imagen debe declararse en:
 
 ```text
-data/car_campaign_lora/metadata.csv
+data/car_campaign_lora/image_metadata.csv
 ```
 
 Formato:
 
 ```csv
-file_path,caption
-./images/1.autoespar_toyota_corolla_cross_2025.jpg,"AUTOESPAR automotive dealership marketing banner for Toyota Corolla Cross Hybrid Electric 2025. ... includes the conditions/legal disclaimer area at the bottom of the image, usually inside a black, white, or red horizontal rectangle with very small Spanish legal text."
+file_path,caption,training_caption
+./images/1.autoespar_toyota_corolla_cross_2025.jpg,"source/audit description","AUTOESPAR dealership automotive advertisement, Toyota Corolla Cross, clean promotional banner layout, vehicle-focused composition, bold red white and black graphic blocks, blank copy area, small unreadable legal footer bar"
 ```
 
-Para el dataset actual, `metadata_template.csv` ya esta preparado con 29 filas:
+Para el dataset actual, `image_metadata.csv` ya esta preparado con 154 filas:
 
-- 23 filas de banners/campañas del concesionario Autoespar.
+- 108 filas de banners/campañas del concesionario Autoespar.
+- 40 filas de referencias Toyota para estilo visual automotriz.
 - 6 filas suplementarias tomadas directamente de `docs/images_descriptions_start/lora_caption_dataset.csv`.
 
-Las primeras 23 captions usan `AUTOESPAR` como trigger word e incluyen:
+El CSV conserva dos textos por imagen:
 
-- estilo de banner/campaña de concesionario Autoespar;
-- modelo Toyota, ano, motor, transmision, campaña, garantia y concesionario cuando aplica;
-- area de `condiciones` al pie de la imagen, normalmente dentro de un rectangulo negro, blanco o rojo con texto legal pequeno;
-- telefono de cotizacion o servicio cuando aparece en la fuente, por ejemplo despues de `cotiza al` o `agenda tu servicio al`.
+- `caption`: descripcion fuente/auditoria.
+- `training_caption`: caption limpia que se usa para entrenar DreamBooth LoRA.
 
-Las 6 captions suplementarias se mantienen exactamente como vienen en `lora_caption_dataset.csv`, porque son referencias limpias de logos/autos y no piezas publicitarias Autoespar.
+Las `training_caption` mantienen los trigger words (`AUTOESPAR` para campanas del concesionario y `Toyota automotive advertising reference` para referencias Toyota), pero evitan precios exactos, telefonos, fechas, garantias, texto legal y copys literales. La notebook normaliza las imagenes a `.png`, escribe sidecars `.txt` con `training_caption`, y usa `INSTANCE_PROMPT` solo como fallback.
+
+Por defecto, `proyecto_final_diffusion_lora_colab_drive.ipynb` entrena con las primeras 65 imagenes validadas. Cambia `TRAINING_IMAGE_LIMIT` a `None`, `0` o `""` para usar las 154 filas.
 
 Para la demo final se recomiendan 20-40 imagenes con vistas frontal, lateral, trasera, interior, detalles y lifestyle. Para una prueba rapida pueden bastar 8-15 imagenes.
 
@@ -153,18 +164,34 @@ Para la demo final se recomiendan 20-40 imagenes con vistas frontal, lateral, tr
 - Si la GPU no alcanza para todo en una sesion, ejecuta primero el fine-tuning del LLM y luego el LoRA visual en otra sesion.
 - En CPU, los entrenamientos y la generacion SDXL no son practicos.
 
-## Como Correr En Colab O Kaggle
+## Guia De Notebooks Actuales
 
-1. Activar GPU.
-2. Subir o clonar el repositorio.
-3. Usar el JSON SFT corregido en `data/commercial_campaing_sft/commercial_campaign_sft_corrected_300.json`.
-4. Para correr solo el flujo LLM, abrir `notebooks/proyecto_final_qwen3_text_llm_sft_colab_kaggle.ipynb`.
-5. Para generar el reporte tecnico HTML del LLM despues de evaluar, abrir `notebooks/reporte_tecnico_qwen3_evaluation_colab_kaggle.ipynb`.
-6. Para correr el flujo multimodal completo, abrir `notebooks/proyecto_final_automotive_lora_marketing_full_colab_kaggle.ipynb`.
-7. Agregar imagenes en `data/car_campaign_lora/images/` solo si tambien vas a ejecutar el LoRA visual.
-8. Usar `data/car_campaign_lora/metadata_template.csv` como base; si el notebook espera `metadata.csv`, copiarlo a `data/car_campaign_lora/metadata.csv`.
-9. Ejecutar celdas de validacion de datos.
-10. Cambiar flags cuando los datos esten listos:
+Esta es la forma recomendada de usar los notebooks del proyecto. Los notebooks estan pensados principalmente para Colab o Kaggle con GPU; la ejecucion local sirve para inspeccion, preparacion de datos, pruebas chicas o para correr partes modulares, pero no es recomendable para entrenar modelos grandes sin una GPU NVIDIA con suficiente VRAM.
+
+### 1. Notebook Multimodal Completo
+
+```text
+notebooks/proyecto_final_automotive_lora_marketing_full_colab_kaggle.ipynb
+```
+
+Usalo cuando quieras correr la demo final completa: fine-tuning del LLM Qwen3, evaluacion textual, entrenamiento LoRA visual SDXL y generacion de assets de campana.
+
+Requisitos previos:
+
+- GPU activa en Colab o Kaggle.
+- Dataset SFT disponible en `data/commercial_campaing_sft/commercial_campaign_sft_corrected_300.json`.
+- Imagenes de entrenamiento visual en `data/car_campaign_lora/images/`.
+- Metadata visual en `data/car_campaign_lora/image_metadata.csv`.
+- Trigger word visual: `AUTOESPAR`.
+
+Ejecucion sugerida:
+
+1. Abrir el notebook en Colab o Kaggle.
+2. Activar GPU antes de ejecutar celdas.
+3. Subir o clonar el repositorio completo.
+4. Ejecutar las celdas de instalacion y diagnostico de entorno.
+5. Ejecutar las celdas de validacion de datasets.
+6. Activar los flags necesarios:
 
 ```python
 RUN_LLM_TRAINING = True
@@ -172,8 +199,169 @@ RUN_VISUAL_TRAINING = True
 RUN_IMAGE_GENERATION = True
 ```
 
-11. Usar `TRIGGER_WORD = "AUTOESPAR"` para el dataset visual actual.
-12. Ejecutar el notebook de arriba hacia abajo.
+7. Si la memoria de GPU no alcanza, correr primero el bloque LLM y luego, en otra sesion, el bloque visual.
+8. Revisar los outputs en `outputs/sft_llm_qwen3/`, `outputs/automotive-lora/` y `outputs/generated_assets/`.
+
+### 2. Notebook Solo LLM Qwen3
+
+```text
+notebooks/proyecto_final_qwen3_text_llm_sft_colab_kaggle.ipynb
+```
+
+Usalo cuando quieras entrenar y evaluar solamente el modelo textual. Es el camino mas simple para probar el flujo SFT con Unsloth + LoRA/QLoRA y comparar Qwen3 base vs Qwen3 fine-tuned.
+
+Requisitos previos:
+
+- GPU T4, L4, A100 o equivalente.
+- Dataset SFT en `data/commercial_campaing_sft/commercial_campaign_sft_corrected_300.json`.
+- Configuracion modular en `configs/llm_tuning/qwen3_text_sft.json`.
+- Dependencias base listadas en `requirements-llm-finetuning.txt`; en Colab/Kaggle, `torch` CUDA y `unsloth` se instalan desde las celdas del notebook porque dependen del runtime.
+
+Ejecucion sugerida:
+
+1. Abrir el notebook con GPU activa.
+2. Ejecutar la instalacion de dependencias.
+3. Validar que el dataset tenga los campos `instruction`, `input` y `output`.
+4. Ejecutar entrenamiento, generacion y evaluacion.
+5. Confirmar que se generen los archivos de evaluacion:
+
+```text
+outputs/sft_llm_qwen3/evaluation/qwen3_text_base_outputs.json
+outputs/sft_llm_qwen3/evaluation/qwen3_text_finetuned_outputs.json
+outputs/sft_llm_qwen3/evaluation/qwen3_text_llm_metrics.csv
+outputs/sft_llm_qwen3/evaluation/qwen3_text_comparison_table.csv
+```
+
+Tambien puede consumir el pipeline modular de `src/dmc_gen_multimodal/llm_tuning/` usando la configuracion JSON.
+
+### 3. Notebook Solo Diffusion LoRA SDXL
+
+```text
+notebooks/proyecto_final_diffusion_lora_colab_drive.ipynb
+```
+
+Usalo cuando quieras entrenar solamente el LoRA visual SDXL con Diffusers, guardar artefactos en Google Drive y comparar SDXL base vs SDXL + LoRA.
+
+Requisitos previos:
+
+- GPU activa; para pruebas rapidas T4 puede funcionar con resolucion 512, batch size 1, gradient accumulation 4 y pocos steps.
+- Imagenes en `data/car_campaign_lora/images/`.
+- Metadata en `data/car_campaign_lora/image_metadata.csv`.
+- Google Drive montado si se quieren persistir pesos y resultados fuera de la sesion de Colab.
+- Trigger word `AUTOESPAR` para conservar consistencia con el dataset actual.
+
+Ejecucion sugerida:
+
+1. Abrir el notebook en Colab.
+2. Activar GPU y montar Drive si se van a guardar checkpoints.
+3. Ejecutar instalacion de `diffusers`, `accelerate`, `peft`, `transformers` y dependencias visuales desde el notebook.
+4. Validar imagenes y metadata.
+5. Ejecutar entrenamiento LoRA.
+6. Generar comparaciones con el mismo prompt y seed para SDXL base y SDXL + LoRA.
+7. Revisar resultados en `outputs/automotive-lora/` y `outputs/evaluation/`.
+
+### 4. Notebook De Reporte Tecnico Qwen3
+
+```text
+notebooks/reporte_tecnico_qwen3_evaluation_colab_kaggle.ipynb
+```
+
+Usalo despues de correr el notebook de LLM. No entrena modelos; lee los outputs de evaluacion y genera un HTML autocontenido de diagnostico.
+
+Requisitos previos:
+
+- Tener generados los archivos en `outputs/sft_llm_qwen3/evaluation/`.
+- Como minimo, `qwen3_text_llm_metrics.csv` y `qwen3_text_finetuned_outputs.json`.
+- Opcionalmente, `qwen3_text_base_outputs.json` y `qwen3_text_comparison_table.csv` para un reporte mas completo.
+
+Ejecucion sugerida:
+
+1. Abrir el notebook.
+2. Verificar que `TECHNICAL_EVAL_DIR` apunte a `outputs/sft_llm_qwen3/evaluation/`.
+3. Ejecutar todas las celdas.
+4. Abrir el reporte generado:
+
+```text
+outputs/sft_llm_qwen3/evaluation/qwen3_text_technical_report.html
+```
+
+### 5. Notebook De Captions Con Granite Vision
+
+```text
+notebooks/caption_generator_using-granite_vision_4_1_4b.ipynb
+```
+
+Usalo para generar o revisar captions de imagenes con el modelo visual `granite-vision-4.1-4b` de IBM. Es util como apoyo para preparar el dataset visual antes del entrenamiento LoRA.
+
+Requisitos previos:
+
+- Imagenes de campana disponibles para procesar.
+- Runtime con GPU recomendado para inferencia visual.
+- Dependencias del notebook instaladas en la sesion.
+
+Ejecucion sugerida:
+
+1. Abrir el notebook.
+2. Ajustar la ruta de imagenes a la carpeta de entrada que se vaya a procesar.
+3. Ejecutar la carga del modelo visual.
+4. Generar captions.
+5. Revisar manualmente las captions antes de incorporarlas a `data/car_campaign_lora/image_metadata.csv`.
+
+## Ejecucion Local Opcional
+
+La forma mas practica de correr entrenamientos sigue siendo Colab/Kaggle. Para trabajar localmente con el flujo modular de LLM, preparar datos o ejecutar partes livianas:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\activate
+pip install -r requirements-llm-finetuning.txt
+```
+
+Si usas Conda:
+
+```powershell
+conda create -n dmc-gen-multimodal python=3.11
+conda activate dmc-gen-multimodal
+pip install -r requirements-llm-finetuning.txt
+```
+
+Notas:
+
+- Instala `torch` con CUDA segun tu GPU y version de CUDA antes de entrenar.
+- Instala `unsloth` siguiendo las celdas del notebook o la version compatible con tu runtime.
+- Para abrir notebooks localmente puedes usar Jupyter:
+
+```powershell
+pip install notebook
+jupyter notebook
+```
+
+En local, evita correr entrenamiento SDXL o Qwen3 si no tienes GPU suficiente. Para notebooks pesados, abre el archivo, revisa rutas/configuracion y ejecuta en Colab/Kaggle.
+
+## Como Correr En Colab O Kaggle
+
+1. Activar GPU.
+2. Subir o clonar el repositorio.
+3. Usar el JSON SFT corregido en `data/commercial_campaing_sft/commercial_campaign_sft_corrected_300.json`.
+4. Elegir el notebook segun el flujo:
+   - multimodal completo: `notebooks/proyecto_final_automotive_lora_marketing_full_colab_kaggle.ipynb`;
+   - solo LLM: `notebooks/proyecto_final_qwen3_text_llm_sft_colab_kaggle.ipynb`;
+   - solo visual SDXL LoRA: `notebooks/proyecto_final_diffusion_lora_colab_drive.ipynb`;
+   - reporte tecnico: `notebooks/reporte_tecnico_qwen3_evaluation_colab_kaggle.ipynb`;
+   - captions visuales: `notebooks/caption_generator_using-granite_vision_4_1_4b.ipynb`.
+5. Agregar imagenes en `data/car_campaign_lora/images/` solo si tambien vas a ejecutar el LoRA visual.
+6. Usar `data/car_campaign_lora/image_metadata.csv` como metadata visual canonica.
+7. Ejecutar celdas de validacion de datos.
+8. Cambiar flags cuando los datos esten listos:
+
+```python
+RUN_LLM_TRAINING = True
+RUN_VISUAL_TRAINING = True
+RUN_IMAGE_GENERATION = True
+```
+
+9. Usar `TRIGGER_WORD = "AUTOESPAR"` para el dataset visual actual.
+10. Ejecutar el notebook elegido de arriba hacia abajo.
 
 ## Outputs Esperados
 

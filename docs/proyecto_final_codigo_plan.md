@@ -9,7 +9,7 @@ La entrega principal sera un notebook reproducible en Colab o Kaggle. Si se mant
 El proyecto tiene dos entradas de datos separadas:
 
 - LLM fine-tuning: archivo JSON con minimo 200 ejemplos SFT en el formato `instruction`, `input`, `output` propuesto en `docs/proyecto_final_comercial_demo_notebook_plan.md`.
-- Diffusion fine-tuning: carpeta de imagenes del auto y `metadata.csv` con una fila por imagen, usando `file_path` y `caption`.
+- Diffusion fine-tuning: carpeta de imagenes del auto y `image_metadata.csv` con una fila por imagen, usando `file_path` y `caption`.
 
 ## Key Changes
 
@@ -22,7 +22,7 @@ El proyecto tiene dos entradas de datos separadas:
   - salida esperada en JSON con: `strategy`, `channel_plan`, `ad_copy`, `image_prompt`, `kpis`, `business_note`
   - `negative_prompt` no es obligatorio en el SFT del LLM; se agrega en el prompt builder visual con fallback deterministico
 - Fine-tuning textual con Unsloth + LoRA sobre `unsloth/Qwen3-4B-Instruct-2507-unsloth-bnb-4bit`.
-- Crear dataset visual DreamBooth desde `data/car_campaign_lora/metadata.csv`:
+- Crear dataset visual DreamBooth desde `data/car_campaign_lora/image_metadata.csv`:
   - columnas obligatorias: `file_path`, `caption`
   - las imagenes viven en `data/car_campaign_lora/images/`
   - las captions deben incluir el trigger word visual, por ejemplo `REALCARMODEL`
@@ -34,7 +34,7 @@ El proyecto tiene dos entradas de datos separadas:
 - Agregar modulo `src/generative/` con:
   - esquemas Pydantic: `CreativeBrief`, `CreativePlan`, `GeneratedAsset`
   - preparacion/carga del dataset SFT JSON y formateo tipo instruct/chat
-  - validacion del `metadata.csv` visual y copia normalizada para DreamBooth
+  - validacion del `image_metadata.csv` visual y copia normalizada para DreamBooth
   - carga de modelo base/fine-tuned para inferencia
   - carga de SDXL base con adapter LoRA visual
   - generacion de imagenes con Diffusers por placement
@@ -54,7 +54,7 @@ El proyecto tiene dos entradas de datos separadas:
   - entrenamiento LLM
   - inferencia LLM base vs fine-tuned
   - evaluacion cuantitativa del LLM
-  - carga de imagenes y `metadata.csv`
+  - carga de imagenes y `image_metadata.csv`
   - entrenamiento DreamBooth LoRA visual
   - comparacion SDXL base vs SDXL con LoRA visual
   - generacion de imagenes por placement
@@ -81,8 +81,8 @@ El proyecto tiene dos entradas de datos separadas:
   - `build_commercial_sft_dataset.py --input data/Social_Media_Advertising.csv --output data/commercial_campaign_sft/commercial_campaign_sft.json --min-examples 200`
   - `train_commercial_llm_lora.py --dataset data/commercial_campaign_sft/commercial_campaign_sft.json --output outputs/commercial-qwen-lora`
   - `evaluate_commercial_llm_lora.py --adapter outputs/commercial-qwen-lora --eval data/commercial_campaign_sft/eval.json --output outputs/evaluation/llm_evaluation_report.json`
-  - `validate_visual_metadata.py --metadata data/car_campaign_lora/metadata.csv --images data/car_campaign_lora/images`
-  - `train_visual_dreambooth_lora.py --metadata data/car_campaign_lora/metadata.csv --images data/car_campaign_lora/images --output outputs/automotive-lora`
+  - `validate_visual_metadata.py --metadata data/car_campaign_lora/image_metadata.csv --images data/car_campaign_lora/images`
+  - `train_visual_dreambooth_lora.py --metadata data/car_campaign_lora/image_metadata.csv --images data/car_campaign_lora/images --output outputs/automotive-lora`
   - `generate_campaign_assets.py --brief data/examples/campaign_brief.json --llm-adapter outputs/commercial-qwen-lora --visual-lora outputs/automotive-lora --output outputs/generated_assets/`
 
 ## Test Plan
@@ -121,5 +121,5 @@ El proyecto tiene dos entradas de datos separadas:
 - El fine-tuning obligatorio se cumple con Qwen 4B + Unsloth + LoRA.
 - El dataset SFT del LLM puede venir ya preparado como JSON o generarse desde un CSV comercial enriquecido.
 - La generacion de imagenes cumple el requisito usando Diffusers y ademas entrena un DreamBooth LoRA visual.
-- El input principal del modelo de difusion es `metadata.csv` + imagenes; el input principal del fine-tuning LLM es JSON con 200+ ejemplos.
+- El input principal del modelo de difusion es `image_metadata.csv` + imagenes; el input principal del fine-tuning LLM es JSON con 200+ ejemplos.
 - El entrenamiento se ejecutara preferentemente en Google Colab con GPU; la app local sera demo/inferencia y podra funcionar en modo prompt-only si no hay GPU.

@@ -9,27 +9,30 @@ data/car_campaign_lora/images/
 Use metadata CSV as the source of truth for image captions:
 
 ```csv
-file_path,caption
-./images/1.autoespar_toyota_corolla_cross_2025.jpg,"AUTOESPAR automotive dealership marketing banner for Toyota Corolla Cross Hybrid Electric 2025. ... includes the conditions/legal disclaimer area at the bottom of the image, usually inside a black, white, or red horizontal rectangle with very small Spanish legal text."
+file_path,caption,training_caption
+./images/1.autoespar_toyota_corolla_cross_2025.jpg,"source/audit description","AUTOESPAR dealership automotive advertisement, Toyota Corolla Cross, clean promotional banner layout, vehicle-focused composition, bold red white and black graphic blocks, blank copy area, small unreadable legal footer bar"
 ```
 
 ## Current Metadata
 
-The current `metadata_template.csv` has 29 rows:
+The current `image_metadata.csv` is the canonical metadata file and has 154 rows:
 
-- 23 Autoespar dealership campaign/banner rows built from `docs/images_descriptions_start/datos-concesionario - Hoja 1.csv` and `docs/images_descriptions_start/image_descriptions.csv`.
+- 108 Autoespar dealership campaign/banner rows built from the dealership CSVs and image description files.
+- 40 Toyota visual reference rows built from generated Toyota captions and image descriptions.
 - 6 direct supplemental reference rows from `docs/images_descriptions_start/lora_caption_dataset.csv`.
 
 Use `AUTOESPAR` as the trigger word for the dealership advertising style.
 
-The first 23 captions describe:
+Caption roles:
 
-- Autoespar dealership campaign/banner style.
-- Toyota model, model year, engine/powertrain, transmission, campaign, warranty, and dealer details when available.
-- The `condiciones`/legal disclaimer area at the bottom of the image, usually inside a black, white, or red horizontal rectangle with very small Spanish legal text.
-- Quote or service phone numbers when present, such as wording after `cotiza al` or `agenda tu servicio al`.
+- `caption` preserves the source/audit description.
+- `training_caption` is the cleaned diffusion caption used for LoRA training.
+- Autoespar training captions start with `AUTOESPAR dealership automotive advertisement`.
+- Toyota reference training captions start with `Toyota automotive advertising reference`.
+- Training captions avoid exact prices, phone numbers, dates, warranty/legal wording, and quoted ad text.
+- Noisy ad text should be described visually, for example `small unreadable legal footer bar`, `blank copy area`, or `promotional headline blocks`.
 
-The final 6 supplemental captions are kept exactly as written in `lora_caption_dataset.csv`; they are clean logo/car reference assets, not Autoespar ad-layout captions.
+The final 6 supplemental rows are clean logo/car reference assets, not Autoespar ad-layout captions.
 
 ## Why Metadata CSV
 
@@ -37,13 +40,13 @@ The final 6 supplemental captions are kept exactly as written in `lora_caption_d
 - It is easier to edit captions in bulk.
 - It makes path validation straightforward.
 - It versions better once the dataset uses real campaign images.
-- It keeps the dataset ready for future caption-aware training scripts.
+- It keeps `caption` available for traceability while `training_caption` stays optimized for diffusion training.
 
-Technical note: the current DreamBooth SDXL command uses one shared `instance_prompt`. The metadata captions are used for dataset QA, traceability, documentation, and prompt-building.
+Technical note: the Colab DreamBooth SDXL workflow prepares normalized `.png` images plus same-stem `.txt` sidecars from `training_caption`. The shared `instance_prompt` remains only as a fallback when a sidecar caption is absent.
 
 ## Regenerate Metadata
 
-When the starter CSVs in `docs/images_descriptions_start/` change, regenerate `metadata_template.csv` with:
+When the starter CSVs or caption sources change, regenerate `image_metadata.csv` with:
 
 ```powershell
 conda run -n chatbot_llm_rag_taller python scripts/prepare_automotive_lora_metadata.py

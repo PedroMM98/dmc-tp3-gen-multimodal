@@ -11,7 +11,7 @@ flowchart TD
     F[Brief de campana automotriz] --> G[Inferencia LLM fine-tuned]
     E --> G
     G --> H[JSON: estrategia + canal + copy + KPIs + prompt visual]
-    I[metadata.csv file_path + caption] --> J[Validacion CSV visual]
+    I[image_metadata.csv file_path + caption] --> J[Validacion CSV visual]
     K[Imagenes del auto] --> J
     J --> L[Preparacion DreamBooth Dataset]
     L --> M[Diffusers train_dreambooth_lora_sdxl.py]
@@ -32,7 +32,7 @@ flowchart TD
 - **Modelo LLM base**: Qwen3.5-2B cargado con Unsloth.
 - **Fine-tuning LLM**: LoRA/QLoRA para aprender propuestas comerciales automotrices.
 - **Adapter comercial**: salida en `outputs/commercial-qwen-lora/`.
-- **Dataset visual**: `metadata.csv` en `data/car_campaign_lora/` con columnas `file_path` y `caption`, mas imagenes en `data/car_campaign_lora/images/`.
+- **Dataset visual**: `image_metadata.csv` en `data/car_campaign_lora/` con columnas `file_path` y `caption`, mas imagenes en `data/car_campaign_lora/images/`.
 - **Preparacion DreamBooth**: validacion del CSV, rutas de imagenes y captions con trigger word visual.
 - **Modelo visual base**: SDXL base cargado desde Hugging Face Diffusers.
 - **Fine-tuning visual**: DreamBooth LoRA con `train_dreambooth_lora_sdxl.py`.
@@ -74,7 +74,7 @@ El `negative_prompt` no forma parte obligatoria del dataset SFT del LLM. El prom
 ### Diffusion fine-tuning
 
 ```text
-data/car_campaign_lora/metadata.csv
+data/car_campaign_lora/image_metadata.csv
 data/car_campaign_lora/images/
 ```
 
