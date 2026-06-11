@@ -200,7 +200,7 @@ RUN_IMAGE_GENERATION = True
 ```
 
 7. Si la memoria de GPU no alcanza, correr primero el bloque LLM y luego, en otra sesion, el bloque visual.
-8. Revisar los outputs en `outputs/sft_llm_qwen3/`, `outputs/automotive-lora/` y `outputs/generated_assets/`.
+8. Revisar los outputs en `outputs/sft_llm_qwen3/`, `outputs/stable_diffusion_lora/` y `outputs/generated_assets/`.
 
 ### 2. Notebook Solo LLM Qwen3
 
@@ -258,7 +258,7 @@ Ejecucion sugerida:
 4. Validar imagenes y metadata.
 5. Ejecutar entrenamiento LoRA.
 6. Generar comparaciones con el mismo prompt y seed para SDXL base y SDXL + LoRA.
-7. Revisar resultados en `outputs/automotive-lora/` y `outputs/evaluation/`.
+7. Revisar resultados en `outputs/stable_diffusion_lora/generated/` y `outputs/stable_diffusion_lora/evaluation/`.
 
 ### 4. Notebook De Reporte Tecnico Qwen3
 
@@ -365,41 +365,69 @@ RUN_IMAGE_GENERATION = True
 
 ## Outputs Esperados
 
-LLM fine-tuned:
+Los outputs finales del proyecto se organizan por flujo. La forma mas rapida de auditarlos es abrir los reportes HTML en el navegador y luego revisar los CSV/JSON de soporte cuando se necesite detalle.
+
+### LLM Qwen3 SFT
 
 ```text
 outputs/sft_llm_qwen3/qwen3-text-commercial-lora/
 ```
 
-LoRA visual:
-
-```text
-outputs/automotive-lora/
-```
-
-Assets generados:
-
-```text
-outputs/generated_assets/
-```
-
-Evaluaciones y metadata:
+Contiene el adapter/checkpoint del modelo textual fine-tuned. La evaluacion vive en:
 
 ```text
 outputs/sft_llm_qwen3/evaluation/
 ```
 
+Archivos principales:
+
+- `outputs/sft_llm_qwen3/evaluation/qwen3_text_technical_report.html`
+  Reporte tecnico HTML del LLM: parseo JSON, cobertura de schema, latencia, fallos comunes y comparacion base vs fine-tuned.
+- `outputs/sft_llm_qwen3/evaluation/qwen3_text_base_outputs.json`
+  Respuestas generadas por el modelo base para comparacion.
+- `outputs/sft_llm_qwen3/evaluation/qwen3_text_finetuned_outputs.json`
+  Respuestas generadas por el modelo fine-tuned.
+- `outputs/sft_llm_qwen3/evaluation/qwen3_text_llm_metrics.csv`
+  Metrica por ejemplo evaluado.
+- `outputs/sft_llm_qwen3/evaluation/qwen3_text_comparison_table.csv`
+  Tabla comparativa base vs fine-tuned.
+
+### Stable Diffusion SDXL LoRA
+
+```text
+outputs/stable_diffusion_lora/
+```
+
+Contiene el run visual caption-aware de DreamBooth LoRA sobre SDXL. Las subcarpetas mas relevantes son:
+
+```text
+outputs/stable_diffusion_lora/lora_adapter/
+outputs/stable_diffusion_lora/evaluation/
+outputs/stable_diffusion_lora/generated/
+```
+
 Archivos relevantes:
 
-- `outputs/sft_llm_qwen3/evaluation/qwen3_text_base_outputs.json`
-- `outputs/sft_llm_qwen3/evaluation/qwen3_text_finetuned_outputs.json`
-- `outputs/sft_llm_qwen3/evaluation/qwen3_text_llm_metrics.csv`
-- `outputs/sft_llm_qwen3/evaluation/qwen3_text_comparison_table.csv`
-- `outputs/sft_llm_qwen3/evaluation/qwen3_text_technical_report.html`
-  Este archivo se genera desde `notebooks/reporte_tecnico_qwen3_evaluation_colab_kaggle.ipynb`.
-- `outputs/evaluation/visual_training_dataset_summary.csv`
-- `outputs/evaluation/image_generation_metadata.json`
-- `outputs/evaluation/sdxl_base_vs_visual_lora_comparison.json`
+- `outputs/stable_diffusion_lora/evaluation/stable_diffusion_lora_technical_report.html`
+  Reporte tecnico HTML del LoRA visual: configuracion, captions usadas, metricas CLIP, galeria base vs LoRA, artefactos y notas operativas.
+- `outputs/stable_diffusion_lora/lora_adapter/pytorch_lora_weights.safetensors`
+  Adapter LoRA final para cargar sobre `stabilityai/stable-diffusion-xl-base-1.0`.
+- `outputs/stable_diffusion_lora/evaluation/training_config.json`
+  Configuracion del run y evidencia de que se uso `training_caption_sidecar_txt`.
+- `outputs/stable_diffusion_lora/evaluation/caption_training_manifest.csv`
+  Trazabilidad entre imagen fuente, PNG preparado y caption sidecar.
+- `outputs/stable_diffusion_lora/evaluation/base_vs_lora_metrics.csv`
+  Metricas por imagen generada: latencia, CLIP text-image y similitud contra training set.
+- `outputs/stable_diffusion_lora/generated/base/`
+  Imagenes generadas con SDXL base.
+- `outputs/stable_diffusion_lora/generated/lora/`
+  Imagenes generadas con SDXL + LoRA.
+- `outputs/stable_diffusion_lora/generated/comparison_canvases/`
+  Canvases lado a lado usando el mismo prompt y seed.
+- `outputs/stable_diffusion_lora/logs/`
+  Logs stdout/stderr del entrenamiento.
+
+Subcarpetas como `prepared_dataset/`, `training_output/` y `checkpoints/` son utiles para auditoria o reanudacion, pero pueden ser pesadas. Para presentar resultados, normalmente basta con `lora_adapter/`, `evaluation/` y `generated/`.
 
 ## Evaluacion
 

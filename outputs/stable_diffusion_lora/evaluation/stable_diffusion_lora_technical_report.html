@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stable Diffusion LoRA Technical Evaluation Report</title>
+  <style>
+    :root { color-scheme: light; --bg:#f8fafc; --panel:#ffffff; --ink:#0f172a; --muted:#475569; --line:#dbe4ee; --accent:#2563eb; --warn:#b91c1c; --good:#0f766e; }
+    body { margin:0; background:var(--bg); color:var(--ink); font-family:Arial, sans-serif; }
+    .wrap { max-width:1200px; margin:0 auto; padding:32px 24px 64px; }
+    h1,h2,h3 { margin:0 0 12px; } h1{font-size:30px;} h2{font-size:22px; margin-top:34px;} h3{font-size:16px; margin-top:18px;}
+    p { color:var(--muted); line-height:1.5; }
+    .meta { display:flex; flex-wrap:wrap; gap:16px; margin:14px 0 28px; color:var(--muted); font-size:14px; }
+    .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:14px; }
+    .card,.panel { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:16px; box-shadow:0 1px 2px rgba(15,23,42,.04); }
+    .card .label { color:var(--muted); font-size:13px; margin-bottom:8px; text-transform:uppercase; letter-spacing:.04em; }
+    .card .value { font-size:26px; font-weight:700; margin-bottom:4px; }
+    .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start; }
+    table { width:100%; border-collapse:collapse; font-size:13px; } th,td { border-bottom:1px solid var(--line); padding:10px 8px; text-align:left; vertical-align:top; } th{color:var(--muted); font-weight:600; background:#f8fafc;}
+    .muted{color:var(--muted);} .good{color:var(--good); font-weight:700;} .warn{color:var(--warn); font-weight:700;}
+    code, pre { background:#eff6ff; border-radius:4px; } code{padding:2px 5px;} pre{padding:12px; overflow:auto; color:#1e293b;}
+    .gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; }
+    figure { margin:0; background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:10px; }
+    img { width:100%; height:auto; display:block; border-radius:6px; }
+    figcaption { color:var(--muted); font-size:12px; margin-top:8px; word-break:break-word; }
+    ul { color:var(--muted); line-height:1.5; }
+    @media(max-width:900px){.grid-2{grid-template-columns:1fr;}.card .value{font-size:22px;}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Stable Diffusion LoRA Technical Evaluation Report</h1>
+    <p>Diagnostico tecnico del fine-tuning visual DreamBooth LoRA sobre SDXL para estilo de campanas automotrices AUTOESPAR/TOYOTA. El reporte resume configuracion, captions usadas, artefactos, metricas de generacion y evidencia visual del run almacenado en <code>outputs/stable_diffusion_lora/</code>.</p>
+    <div class="meta">
+      <div><strong>Generado:</strong> 2026-06-10 22:44:19 -05:00</div>
+      <div><strong>Base model:</strong> stabilityai/stable-diffusion-xl-base-1.0</div>
+      <div><strong>Run mode:</strong> avg</div>
+      <div><strong>HTML:</strong> outputs/stable_diffusion_lora/evaluation/stable_diffusion_lora_technical_report.html</div>
+    </div>
+    <div class="cards"><div class="card"><div class="label">Training images</div><div class="value">65/154</div><div class="muted">primeras filas validadas del dataset</div></div>
+<div class="card"><div class="label">Caption source</div><div class="value">sidecar .txt</div><div class="muted">training_caption_sidecar_txt</div></div>
+<div class="card"><div class="label">Prepared pairs</div><div class="value">65 png / 65 txt</div><div class="muted">imagenes normalizadas + captions</div></div>
+<div class="card"><div class="label">Train steps</div><div class="value">50</div><div class="muted">resolution 512, rank 8</div></div>
+<div class="card"><div class="label">LoRA adapter</div><div class="value">si</div><div class="muted">44.5 MB</div></div>
+<div class="card"><div class="label">Generated images</div><div class="value">base 9 / lora 9</div><div class="muted">9 comparison canvases</div></div>
+<div class="card"><div class="label">CLIP text-image</div><div class="value">0.246</div><div class="muted">base 0.239, lora mean</div></div>
+<div class="card"><div class="label">Training similarity</div><div class="value">0.695</div><div class="muted">base 0.667, lora mean</div></div></div>
+
+    <h2>Lectura rapida</h2>
+    <div class="grid-2">
+      <div class="panel">
+        <h3>Resultado del entrenamiento</h3>
+        <p>El adapter final esta presente en <code>outputs/stable_diffusion_lora/lora_adapter/pytorch_lora_weights.safetensors</code> con tamano <strong>44.5 MB</strong>. Tambien hay checkpoints intermedios cada 15 steps.</p>
+        <p class="warn">El entrenamiento guardo el adapter final, pero el proceso fue terminado con SIGKILL durante una carga posterior del pipeline SDXL. Esto se interpreta como presion de memoria de Colab, no como ausencia del adapter.</p>
+        <ul>
+          <li>Se entreno con 65 imagenes seleccionadas de 154 filas validas.</li>
+          <li>Las captions reales de entrenamiento salieron de <code>training_caption</code> y se escribieron como sidecars <code>.txt</code>.</li>
+          <li>El prompt comun quedo como fallback, no como fuente principal de captions.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Configuracion clave</h3>
+        <table><tbody>
+          <tr><th>resolution</th><td>512</td></tr>
+          <tr><th>max_train_steps</th><td>50</td></tr>
+          <tr><th>rank</th><td>8</td></tr>
+          <tr><th>learning_rate</th><td>0.0001</td></tr>
+          <tr><th>batch / accumulation</th><td>1 / 4</td></tr>
+          <tr><th>mixed_precision</th><td>fp16</td></tr>
+          <tr><th>seed</th><td>3407</td></tr>
+        </tbody></table>
+      </div>
+    </div>
+
+    <h2>Metricas agregadas por variante</h2>
+    <div class="panel"><table><thead><tr><th>variant</th><th>images</th><th>mean latency</th><th>CLIP text-image</th><th>max similarity to training set</th><th>pairwise similarity</th><th>diversity score</th></tr></thead><tbody><tr><td>base</td><td>6</td><td>8.40s</td><td>0.239</td><td>0.667</td><td>0.631</td><td>0.369</td></tr>
+<tr><td>lora</td><td>6</td><td>8.86s</td><td>0.246</td><td>0.695</td><td>0.761</td><td>0.239</td></tr></tbody></table></div>
+    <p>Interpretacion: el LoRA aumenta ligeramente el alineamiento promedio texto-imagen y la cercania visual al set de entrenamiento, pero reduce diversidad intra-variante. Eso es esperable: el adapter aprende un estilo mas especifico y homogeneo.</p>
+
+    <h2>Metricas por imagen generada</h2>
+    <div class="panel"><table><thead><tr><th>placement</th><th>variant</th><th>seed</th><th>latency</th><th>CLIP text-image</th><th>max training similarity</th><th>file</th></tr></thead><tbody><tr><td>dealership_poster</td><td>base</td><td>3410</td><td>11.90s</td><td>0.243</td><td>0.693</td><td><a href="/content/dmc-tp3-gen-multimodal/diffusion_lora/generated/base/dealership_poster_base_seed_3410.png">image</a></td></tr>
+<tr><td>dealership_poster</td><td>lora</td><td>3410</td><td>12.24s</td><td>0.224</td><td>0.698</td><td><a href="/content/dmc-tp3-gen-multimodal/diffusion_lora/generated/lora/dealership_poster_lora_seed_3410.png">image</a></td></tr>
+<tr><td>email_header</td><td>base</td><td>3412</td><td>5.57s</td><td>0.264</td><td>0.572</td><td><a href="/content/dmc-tp3-gen-multimodal/diffusion_lora/generated/base/email_header_base_seed_3412.png">image</a></td></tr>
+<tr><td>email_header</td><td>lora</td><td>3412</td><td>6.01s</td><td>0.242</td><td>0.695</td><td><a href="/content/dmc-tp3-gen-multimodal/diffusion_lora/generated/lora/email_header_lora_seed_3412.png">image</a></td></tr>
+<tr><td>highway_billboard</td><td>base</td><td>3411</td><td>7.76s</td><td>0.229</td><td>0.753</td><td><a href="/content/dmc-tp3-gen-multimodal/diffusion_lora/generated/base/highway_billboard_base_seed_3411.png">image</a></td></tr>
+<tr><td>highway_billboard</td><td>lora</td><td>3411</td><td>8.18s</td><td>0.218</td><td>0.715</td><td><a href="/content/dmc-tp3-gen-multimodal/diffusion_lora/generated/lora/highway_billboard_lora_seed_3411.png">image</a></td></tr>
+<tr><td>instagram_feed</td><td>base</td><td>3408</td><td>9.36s</td><td>0.230</td><td>0.686</td><td><a href="/content/dmc-tp3-gen-multimodal/diffusion_lora/generated/base/instagram_feed_base_seed_3408.png">image</a></td></tr>
+<tr><td>instagram_feed</td><td>lora</td><td>3408</td><td>10.27s</td><td>0.260</td><td>0.674</td><td><a href="/content/dmc-tp3-gen-multimodal/diffusion_lora/generated/lora/instagram_feed_lora_seed_3408.png">image</a></td></tr>
+<tr><td>vertical_mobile_ad</td><td>base</td><td>3409</td><td>8.40s</td><td>0.199</td><td>0.646</td><td><a href="/content/dmc-tp3-gen-multimodal/diffusion_lora/generated/base/vertical_mobile_ad_base_seed_3409.png">image</a></td></tr>
+<tr><td>vertical_mobile_ad</td><td>lora</td><td>3409</td><td>8.46s</td><td>0.318</td><td>0.728</td><td><a href="/content/dmc-tp3-gen-multimodal/diffusion_lora/generated/lora/vertical_mobile_ad_lora_seed_3409.png">image</a></td></tr>
+<tr><td>website_hero</td><td>base</td><td>3407</td><td>7.38s</td><td>0.267</td><td>0.651</td><td><a href="/content/dmc-tp3-gen-multimodal/diffusion_lora/generated/base/website_hero_base_seed_3407.png">image</a></td></tr>
+<tr><td>website_hero</td><td>lora</td><td>3407</td><td>7.98s</td><td>0.214</td><td>0.659</td><td><a href="/content/dmc-tp3-gen-multimodal/diffusion_lora/generated/lora/website_hero_lora_seed_3407.png">image</a></td></tr></tbody></table></div>
+
+    <h2>Galeria base vs LoRA</h2>
+    <p>Canvases lado a lado generados con el mismo prompt y seed para comparar SDXL base contra SDXL + LoRA.</p>
+    <div class="gallery"><figure><a href="../generated/comparison_canvases/dealership_poster_base_vs_lora_seed_3410.png"><img src="../generated/comparison_canvases/dealership_poster_base_vs_lora_seed_3410.png" alt="dealership_poster_base_vs_lora_seed_3410"></a><figcaption>dealership_poster_base_vs_lora_seed_3410.png</figcaption></figure>
+<figure><a href="../generated/comparison_canvases/email_header_base_vs_lora_seed_3412.png"><img src="../generated/comparison_canvases/email_header_base_vs_lora_seed_3412.png" alt="email_header_base_vs_lora_seed_3412"></a><figcaption>email_header_base_vs_lora_seed_3412.png</figcaption></figure>
+<figure><a href="../generated/comparison_canvases/highway_billboard_base_vs_lora_seed_3411.png"><img src="../generated/comparison_canvases/highway_billboard_base_vs_lora_seed_3411.png" alt="highway_billboard_base_vs_lora_seed_3411"></a><figcaption>highway_billboard_base_vs_lora_seed_3411.png</figcaption></figure>
+<figure><a href="../generated/comparison_canvases/instagram_feed_base_vs_lora_seed_3408_v1.png"><img src="../generated/comparison_canvases/instagram_feed_base_vs_lora_seed_3408_v1.png" alt="instagram_feed_base_vs_lora_seed_3408_v1"></a><figcaption>instagram_feed_base_vs_lora_seed_3408_v1.png</figcaption></figure>
+<figure><a href="../generated/comparison_canvases/instagram_feed_base_vs_lora_seed_3408.png"><img src="../generated/comparison_canvases/instagram_feed_base_vs_lora_seed_3408.png" alt="instagram_feed_base_vs_lora_seed_3408"></a><figcaption>instagram_feed_base_vs_lora_seed_3408.png</figcaption></figure>
+<figure><a href="../generated/comparison_canvases/vertical_mobile_ad_base_vs_lora_seed_3409_v1.png"><img src="../generated/comparison_canvases/vertical_mobile_ad_base_vs_lora_seed_3409_v1.png" alt="vertical_mobile_ad_base_vs_lora_seed_3409_v1"></a><figcaption>vertical_mobile_ad_base_vs_lora_seed_3409_v1.png</figcaption></figure>
+<figure><a href="../generated/comparison_canvases/vertical_mobile_ad_base_vs_lora_seed_3409.png"><img src="../generated/comparison_canvases/vertical_mobile_ad_base_vs_lora_seed_3409.png" alt="vertical_mobile_ad_base_vs_lora_seed_3409"></a><figcaption>vertical_mobile_ad_base_vs_lora_seed_3409.png</figcaption></figure>
+<figure><a href="../generated/comparison_canvases/website_hero_base_vs_lora_seed_3407_v1.png"><img src="../generated/comparison_canvases/website_hero_base_vs_lora_seed_3407_v1.png" alt="website_hero_base_vs_lora_seed_3407_v1"></a><figcaption>website_hero_base_vs_lora_seed_3407_v1.png</figcaption></figure>
+<figure><a href="../generated/comparison_canvases/website_hero_base_vs_lora_seed_3407.png"><img src="../generated/comparison_canvases/website_hero_base_vs_lora_seed_3407.png" alt="website_hero_base_vs_lora_seed_3407"></a><figcaption>website_hero_base_vs_lora_seed_3407.png</figcaption></figure></div>
+
+    <h2>Prompts de comparacion</h2>
+    <div class="panel"><table><thead><tr><th>placement</th><th>size</th><th>seed</th><th>prompt</th></tr></thead><tbody><tr><td>website_hero</td><td>768x432</td><td>3407</td><td>AUTOESPAR dealership automotive advertisement, TOYOTA Corolla Cross Hybrid Electric 2025, realistic Toyota SUV hero image, clean commercial dealership campaign design, red white and black brand color palette, bold promotional headline blocks, blank Call To Action area, dealership logo placement, Toyota brand badge placement, small unreadable legal footer bar, polished automotive reflections, crisp vehicle proportions, high quality advertising layout, website hero banner, wide 16:9 dealership campaign layout, vehicle centered, clean headline space on the left, Call To Action (CTA) block on the right, clear AUTOESPAR dealership identity, clear TOYOTA brand presence, professional automotive retail campaign</td></tr>
+<tr><td>instagram_feed</td><td>640x640</td><td>3408</td><td>AUTOESPAR dealership automotive advertisement, TOYOTA Corolla Cross Hybrid Electric 2025, realistic Toyota SUV hero image, clean commercial dealership campaign design, red white and black brand color palette, bold promotional headline blocks, blank Call To Action area, dealership logo placement, Toyota brand badge placement, small unreadable legal footer bar, polished automotive reflections, crisp vehicle proportions, high quality advertising layout, Instagram feed ad, square social media ad layout, vehicle centered, bold red white black graphic blocks, compact Call To Action area, clear AUTOESPAR dealership identity, clear TOYOTA brand presence, professional automotive retail campaign</td></tr>
+<tr><td>vertical_mobile_ad</td><td>432x768</td><td>3409</td><td>AUTOESPAR dealership automotive advertisement, TOYOTA Corolla Cross Hybrid Electric 2025, realistic Toyota SUV hero image, clean commercial dealership campaign design, red white and black brand color palette, bold promotional headline blocks, blank Call To Action area, dealership logo placement, Toyota brand badge placement, small unreadable legal footer bar, polished automotive reflections, crisp vehicle proportions, high quality advertising layout, vertical mobile ad, vertical 9:16 mobile campaign layout, dealership branding at the top, vehicle hero image in the center, legal footer bar at the bottom, clear AUTOESPAR dealership identity, clear TOYOTA brand presence, professional automotive retail campaign</td></tr>
+<tr><td>dealership_poster</td><td>640x832</td><td>3410</td><td>AUTOESPAR dealership automotive advertisement, TOYOTA Corolla Cross Hybrid Electric 2025, realistic Toyota SUV hero image, clean commercial dealership campaign design, red white and black brand color palette, bold promotional headline blocks, blank Call To Action area, dealership logo placement, Toyota brand badge placement, small unreadable legal footer bar, polished automotive reflections, crisp vehicle proportions, high quality advertising layout, dealership poster, vertical print poster layout, large vehicle hero image, strong promotional headline block, structured dealership branding, clear AUTOESPAR dealership identity, clear TOYOTA brand presence, professional automotive retail campaign</td></tr>
+<tr><td>highway_billboard</td><td>896x384</td><td>3411</td><td>AUTOESPAR dealership automotive advertisement, TOYOTA Corolla Cross Hybrid Electric 2025, realistic Toyota SUV hero image, clean commercial dealership campaign design, red white and black brand color palette, bold promotional headline blocks, blank Call To Action area, dealership logo placement, Toyota brand badge placement, small unreadable legal footer bar, polished automotive reflections, crisp vehicle proportions, high quality advertising layout, highway billboard, ultra wide billboard layout, large vehicle silhouette, short promotional headline block, strong dealership branding, clear AUTOESPAR dealership identity, clear TOYOTA brand presence, professional automotive retail campaign</td></tr>
+<tr><td>email_header</td><td>768x320</td><td>3412</td><td>AUTOESPAR dealership automotive advertisement, TOYOTA Corolla Cross Hybrid Electric 2025, realistic Toyota SUV hero image, clean commercial dealership campaign design, red white and black brand color palette, bold promotional headline blocks, blank Call To Action area, dealership logo placement, Toyota brand badge placement, small unreadable legal footer bar, polished automotive reflections, crisp vehicle proportions, high quality advertising layout, email campaign header, wide email header layout, vehicle on the right, clean blank copy area on the left, compact brand strip, clear AUTOESPAR dealership identity, clear TOYOTA brand presence, professional automotive retail campaign</td></tr></tbody></table></div>
+
+    <h2>Dataset y captions de entrenamiento</h2>
+    <div class="grid-2">
+      <div class="panel">
+        <h3>Resumen</h3>
+        <table><tbody>
+          <tr><th>training captions promedio</th><td>48.02 palabras</td></tr>
+          <tr><th>training caption max</th><td>55 palabras</td></tr>
+          <tr><th>prepared png</th><td>65</td></tr>
+          <tr><th>prepared txt</th><td>65</td></tr>
+          <tr><th>checkpoints</th><td>3</td></tr>
+        </tbody></table>
+        <h3>Extensiones fuente</h3>
+        <table><thead><tr><th>extension</th><th>count</th></tr></thead><tbody><tr><td>.jpg</td><td>59</td></tr>
+<tr><td>.png</td><td>6</td></tr></tbody></table>
+      </div>
+      <div class="panel">
+        <h3>Hparams registrados</h3>
+        <pre>checkpointing_steps: 15
+gradient_accumulation_steps: 4
+instance_data_dir: /content/dmc-tp3-gen-multimodal/diffusion_lora/prepared_dataset
+learning_rate: 0.0001
+max_train_steps: 50
+mixed_precision: fp16
+output_dir: /content/dmc-tp3-gen-multimodal/diffusion_lora/training_output
+pretrained_model_name_or_path: stabilityai/stable-diffusion-xl-base-1.0
+rank: 8
+resolution: 512
+seed: 3407
+train_batch_size: 1
+train_text_encoder: false</pre>
+      </div>
+    </div>
+
+    <h2>Muestras de captions usadas</h2>
+    <div class="panel"><table><thead><tr><th>source</th><th>prepared image</th><th>training_caption</th></tr></thead><tbody><tr><td>1.autoespar_toyota_corolla_cross_2025.jpg</td><td>autoespar_001.png</td><td>AUTOESPAR dealership automotive advertisement, Toyota Corolla Cross, A banner advertising the Toyota Corolla Cross hybrid electric vehicle, featuring a man walking next to the car in an urban setting, 8 Hybrid, , small unreadable legal footer bar, clean promotional banner layout, vehicle-focused composition, bold red white and black graphic blocks, blank copy area, small unreadable</td></tr>
+<tr><td>10.autoespar_ganadores_cuida_tu_toyota_mama.jpg</td><td>autoespar_002.png</td><td>AUTOESPAR dealership automotive advertisement, Toyota Toyota vehicle, A pink and white banner with a man and woman in a car repair shop, small unreadable legal footer bar, clean promotional banner layout, vehicle-focused composition, bold red white and black graphic blocks, blank copy area, small unreadable legal footer bar, high quality commercial design</td></tr>
+<tr><td>11.autoespar_toyota_corolla_cross_outlet_2025.jpg</td><td>autoespar_003.png</td><td>AUTOESPAR dealership automotive advertisement, Toyota Corolla Cross, A red Toyota Corolla Cross hybrid electric car is displayed in a promotional image for a 2025 model, with a couple standing beside it, The image is a banner-style advertisement for an outlet store, featuring graphic headline blocks, clean promotional banner layout, vehicle-focused composition, bold red white and</td></tr>
+<tr><td>12.autoespar_toyota_corolla_cross_feliz_dia_madre.jpg</td><td>autoespar_004.png</td><td>AUTOESPAR dealership automotive advertisement, Toyota Corolla Cross, A banner-style advertisement for Toyotas Day) campaign, featuring a woman and a child embracing next to a white Toyota Corolla Cross, The image conveys warmth and gratitude, with a sunset backdrop and a message of appreciation for mothers, clean promotional banner layout, vehicle-focused composition, bold red white and</td></tr>
+<tr><td>13.autoespar_toyota_yaris_cross_outlet_2025.jpg</td><td>autoespar_005.png</td><td>AUTOESPAR dealership automotive advertisement, Toyota Yaris Cross, Yaris, A poster for a Toyota Yaris Cross with a man standing next to it, 5 FULL D- LUX, clean promotional banner layout, vehicle-focused composition, bold red white and black graphic blocks, blank copy area, small unreadable legal footer bar, high quality commercial design</td></tr>
+<tr><td>14.autoespar_toyota_land_cruiser_prado_outlet.jpg</td><td>autoespar_006.png</td><td>AUTOESPAR dealership automotive advertisement, Toyota Land Cruiser Prado, A man stands next to a Land Cruiser Prado SUV in a coastal setting, with a banner advertising and in the background, clean promotional banner layout, vehicle-focused composition, bold red white and black graphic blocks, blank copy area, small unreadable legal footer bar, high quality commercial design</td></tr></tbody></table></div>
+
+    <h2>Artefactos principales</h2>
+    <div class="panel"><table><thead><tr><th>ruta</th><th>uso</th></tr></thead><tbody>
+      <tr><td><code>outputs/stable_diffusion_lora/lora_adapter/pytorch_lora_weights.safetensors</code></td><td>Adapter LoRA final para cargar sobre SDXL base.</td></tr>
+      <tr><td><code>outputs/stable_diffusion_lora/evaluation/training_config.json</code></td><td>Configuracion del run y evidencia de caption-aware mode.</td></tr>
+      <tr><td><code>outputs/stable_diffusion_lora/evaluation/caption_training_manifest.csv</code></td><td>Trazabilidad imagen fuente -> PNG preparado -> sidecar caption.</td></tr>
+      <tr><td><code>outputs/stable_diffusion_lora/evaluation/base_vs_lora_metrics.csv</code></td><td>Metricas por imagen generada.</td></tr>
+      <tr><td><code>outputs/stable_diffusion_lora/generated/</code></td><td>Imagenes base, LoRA y canvases comparativos.</td></tr>
+      <tr><td><code>outputs/stable_diffusion_lora/logs/</code></td><td>Stdout/stderr capturados del entrenamiento.</td></tr>
+    </tbody></table></div>
+
+    <h2>Conclusiones tecnicas</h2>
+    <div class="panel"><ul>
+      <li>El pipeline caption-aware quedo activo: el entrenamiento uso sidecars <code>.txt</code> generados desde <code>training_caption</code>.</li>
+      <li>La comparacion usa seeds fijos 3407-3412, por lo que base y LoRA son comparables por prompt.</li>
+      <li>El LoRA se acerca mas al dominio visual del dataset, con mayor similitud al training set y menor diversidad.</li>
+      <li>Para mejorar calidad visual conviene correr un modo mas largo, revisar manualmente outputs y mantener prompts sin texto legible exacto.</li>
+      <li>El SIGKILL posterior al guardado sugiere que Colab quedo justo de memoria al recargar SDXL; para nuevas corridas conviene generar en una sesion separada o apagar baseline/FID.</li>
+    </ul></div>
+  </div>
+</body>
+</html>
