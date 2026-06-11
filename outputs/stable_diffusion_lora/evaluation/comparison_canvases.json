@@ -1,0 +1,32 @@
+[
+  {
+    "placement": "dealership_poster",
+    "seed": 3410,
+    "canvas_path": "/content/dmc-tp3-gen-multimodal/diffusion_lora/generated/comparison_canvases/dealership_poster_base_vs_lora_seed_3410.png"
+  },
+  {
+    "placement": "email_header",
+    "seed": 3412,
+    "canvas_path": "/content/dmc-tp3-gen-multimodal/diffusion_lora/generated/comparison_canvases/email_header_base_vs_lora_seed_3412.png"
+  },
+  {
+    "placement": "highway_billboard",
+    "seed": 3411,
+    "canvas_path": "/content/dmc-tp3-gen-multimodal/diffusion_lora/generated/comparison_canvases/highway_billboard_base_vs_lora_seed_3411.png"
+  },
+  {
+    "placement": "instagram_feed",
+    "seed": 3408,
+    "canvas_path": "/content/dmc-tp3-gen-multimodal/diffusion_lora/generated/comparison_canvases/instagram_feed_base_vs_lora_seed_3408.png"
+  },
+  {
+    "placement": "vertical_mobile_ad",
+    "seed": 3409,
+    "canvas_path": "/content/dmc-tp3-gen-multimodal/diffusion_lora/generated/comparison_canvases/vertical_mobile_ad_base_vs_lora_seed_3409.png"
+  },
+  {
+    "placement": "website_hero",
+    "seed": 3407,
+    "canvas_path": "/content/dmc-tp3-gen-multimodal/diffusion_lora/generated/comparison_canvases/website_hero_base_vs_lora_seed_3407.png"
+  }
+]

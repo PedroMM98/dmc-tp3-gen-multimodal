@@ -1,0 +1,22 @@
+[
+  {
+    "variant": "base",
+    "image_count": 6,
+    "missing_image_count": 0,
+    "mean_latency_sec": 8.396850096166721,
+    "mean_clip_text_image_similarity": 0.23890474687019983,
+    "mean_max_clip_image_similarity_to_training_set": 0.6668137013912201,
+    "mean_pairwise_clip_similarity": 0.6306953430175781,
+    "diversity_score_1_minus_similarity": 0.3693046569824219
+  },
+  {
+    "variant": "lora",
+    "image_count": 6,
+    "missing_image_count": 0,
+    "mean_latency_sec": 8.857433216833064,
+    "mean_clip_text_image_similarity": 0.24596753964821497,
+    "mean_max_clip_image_similarity_to_training_set": 0.6946989496548971,
+    "mean_pairwise_clip_similarity": 0.7607929706573486,
+    "diversity_score_1_minus_similarity": 0.23920702934265137
+  }
+]

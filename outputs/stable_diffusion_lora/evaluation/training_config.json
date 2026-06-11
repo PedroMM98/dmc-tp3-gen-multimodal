@@ -1,0 +1,23 @@
+{
+  "base_model": "stabilityai/stable-diffusion-xl-base-1.0",
+  "instance_data_dir": "/content/dmc-tp3-gen-multimodal/diffusion_lora/prepared_dataset",
+  "training_output_dir": "/content/dmc-tp3-gen-multimodal/diffusion_lora/training_output",
+  "lora_output_dir": "/content/dmc-tp3-gen-multimodal/diffusion_lora/lora_adapter",
+  "checkpoints_dir": "/content/dmc-tp3-gen-multimodal/diffusion_lora/checkpoints",
+  "caption_source": "training_caption_sidecar_txt",
+  "training_image_limit": 65,
+  "valid_record_count": 154,
+  "selected_training_images": 65,
+  "dreambooth_patch_applied": true,
+  "instance_prompt_fallback": "AUTOESPAR automotive dealership marketing campaign asset for TOYOTA, commercial car banner layout, bottom legal conditions strip, usually a black, white, or red horizontal rectangle with very small Spanish legal disclaimer text",
+  "resolution": 512,
+  "max_train_steps": 50,
+  "checkpointing_steps": 15,
+  "rank": 8,
+  "learning_rate": 0.0001,
+  "train_batch_size": 1,
+  "gradient_accumulation_steps": 4,
+  "mixed_precision": "fp16",
+  "seed": 3407,
+  "run_mode": "avg"
+}
